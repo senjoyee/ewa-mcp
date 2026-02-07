@@ -1,0 +1,307 @@
+---
+# EWA MCP + Azure AI Search Specs (Tech Consultant Tools)
+
+## 0) Conventions / Placeholders
+- customer_id: string (tenant boundary)
+- sid: string (SAP system id)
+- doc_id: string (EWA report id)
+- alert_id: string (stable alert id)
+- section_path: string (hierarchical section path)
+- embedDim: integer (embedding dimensions, e.g., 1536 or 3072)
+
+## 1) Shared Contracts (JSON)
+
+### 1.1 Enums
+```json
+{
+  "Severity": ["very_high","high","medium","low","info","unknown"],
+  "Category": ["security","performance","stability","configuration","lifecycle","data_volume","database","bw","other","unknown"]
+}
+```
+
+### 1.2 Citation (grounding contract)
+```json
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["doc_id","section_path","page_range"],
+  "properties": {
+    "doc_id": { "type": "string" },
+    "section_path": { "type": "string" },
+    "page_range": { "type": "string", "pattern": "^[0-9]+(\\-[0-9]+)?$" },
+    "page_start": { "type": "integer", "minimum": 1 },
+    "page_end": { "type": "integer", "minimum": 1 },
+    "chunk_id": { "type": "string" },
+    "source_url": { "type": "string", "format": "uri" },
+    "quote": { "type": "string" }
+  }
+}
+```
+
+## 2) MCP Tools (catalog)
+
+### 2.1 MCP Tool Definition Shape
+Tools are exposed via MCP `tools/list` with:
+- name (unique), description, inputSchema (JSON Schema object)
+
+### 2.2 Tool List (names + inputSchema)
+
+**Output contracts:** Every output that includes facts also includes `citations: Citation[]`.
+
+#### 2.2.1 list_reports (report inventory)
+```json
+{
+  "name": "list_reports",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "sid": { "type": "string", "minLength": 1 },
+      "date_from": { "type": "string", "format": "date" },
+      "date_to": { "type": "string", "format": "date" },
+      "latest_n": { "type": "integer", "minimum": 1, "maximum": 200, "default": 10 }
+    }
+  }
+}
+```
+
+#### 2.2.2 get_alert_overview (alert extraction)
+```json
+{
+  "name": "get_alert_overview",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","doc_id"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "doc_id": { "type": "string", "minLength": 1 },
+      "include_info": { "type": "boolean", "default": true }
+    }
+  }
+}
+```
+
+#### 2.2.3 get_alert_detail (evidence)
+```json
+{
+  "name": "get_alert_detail",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","doc_id","alert_id"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "doc_id": { "type": "string", "minLength": 1 },
+      "alert_id": { "type": "string", "minLength": 1 },
+      "max_evidence_snippets": { "type": "integer", "minimum": 1, "maximum": 50, "default": 8 }
+    }
+  }
+}
+```
+
+#### 2.2.4 get_section (section retrieval)
+```json
+{
+  "name": "get_section",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","doc_id","section_path"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "doc_id": { "type": "string", "minLength": 1 },
+      "section_path": { "type": "string", "minLength": 1 },
+      "top_n_chunks": { "type": "integer", "minimum": 1, "maximum": 200, "default": 20 }
+    }
+  }
+}
+```
+
+#### 2.2.5 ask_ewa_scoped (scoped RAG)
+```json
+{
+  "name": "ask_ewa_scoped",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","question"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "question": { "type": "string", "minLength": 1 },
+      "filters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "sid": { "type": "string" },
+          "doc_id": { "type": "string" },
+          "date_from": { "type": "string", "format": "date" },
+          "date_to": { "type": "string", "format": "date" },
+          "severity": { "type": "string", "enum": ["very_high","high","medium","low","info","unknown"] },
+          "category": { "type": "string", "enum": ["security","performance","stability","configuration","lifecycle","data_volume","database","bw","other","unknown"] },
+          "section_contains": { "type": "string" }
+        }
+      },
+      "top_k": { "type": "integer", "minimum": 1, "maximum": 50, "default": 12 },
+      "answer_style": { "type": "string", "enum": ["concise","detailed"], "default": "concise" }
+    }
+  }
+}
+```
+
+#### 2.2.6 compare_reports (diffing)
+```json
+{
+  "name": "compare_reports",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","sid","doc_id_a","doc_id_b"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "sid": { "type": "string", "minLength": 1 },
+      "doc_id_a": { "type": "string", "minLength": 1 },
+      "doc_id_b": { "type": "string", "minLength": 1 },
+      "include_info": { "type": "boolean", "default": false }
+    }
+  }
+}
+```
+
+#### 2.2.7 generate_action_pack (packaging)
+```json
+{
+  "name": "generate_action_pack",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["customer_id","doc_id","alert_ids"],
+    "properties": {
+      "customer_id": { "type": "string", "minLength": 1 },
+      "doc_id": { "type": "string", "minLength": 1 },
+      "alert_ids": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+      "format": { "type": "string", "enum": ["md","json"], "default": "md" },
+      "include_evidence": { "type": "boolean", "default": true },
+      "max_evidence_snippets_per_alert": { "type": "integer", "minimum": 1, "maximum": 20, "default": 5 }
+    }
+  }
+}
+```
+
+## 3) Azure AI Search (per-customer index templates)
+
+API: create/update index uses `fields`, optional `semantic`, optional `vectorSearch`.
+Semantic config uses `semantic.configurations[].prioritizedFields`.
+Vector config uses `vectorSearch.algorithms` + `vectorSearch.profiles`; vector fields specify `dimensions` + `vectorSearchProfile`.
+
+### 3.1 Index naming (Option A)
+- docs: `ewa-docs-{customer}`
+- chunks: `ewa-chunks-{customer}`
+- alerts: `ewa-alerts-{customer}`
+
+### 3.2 Index: ewa-docs-{customer} (list_reports)
+
+**Minimal fields:**
+- doc_id (key)
+- customer_id, sid, environment
+- report_date, analysis_from, analysis_to
+- title, file_name, pages
+- sha256, source_url (optional)
+
+**Semantic config (minimal):**
+- titleField: title
+- contentFields: title
+- keywordFields: sid, environment
+
+### 3.3 Index: ewa-chunks-{customer} (get_section, ask_ewa_scoped)
+
+**Minimal fields:**
+- chunk_id (key)
+- doc_id, customer_id, sid, environment, report_date
+- section_path, page_start, page_end
+- severity, category, sap_note_ids[]
+- content_md (searchable, retrievable)
+- content_vector (Collection(Edm.Single)) with:
+  - dimensions: embedDim
+  - vectorSearchProfile: "vector-profile-1"
+
+**Semantic config (recommended):**
+- titleField: section_path
+- contentFields: content_md
+- keywordFields: sid, category, severity, sap_note_ids
+
+**VectorSearch config (minimal):**
+- algorithms: hnsw-1 (metric cosine)
+- profiles: vector-profile-1 -> algorithm hnsw-1
+
+### 3.4 Index: ewa-alerts-{customer} (alert overview/detail/diff/action_pack)
+
+**Minimal fields:**
+- alert_id (key)
+- customer_id, doc_id, sid, environment, report_date
+- title, severity, category
+- section_path, page_start, page_end, page_range
+- evidence_chunk_ids[] (pointers into ewa-chunks index)
+- sap_note_ids[] (optional), tags[] (optional)
+
+**Semantic config:**
+- titleField: title
+- contentFields: title
+- keywordFields: sid, category, severity
+
+## 4) Minimal JSON snippets (pasteable building blocks)
+
+### 4.1 vectorSearch block (minimal)
+```json
+{
+  "vectorSearch": {
+    "algorithms": [
+      {
+        "name": "hnsw-1",
+        "kind": "hnsw",
+        "hnswParameters": { "m": 4, "efConstruction": 400, "efSearch": 500, "metric": "cosine" }
+      }
+    ],
+    "profiles": [
+      { "name": "vector-profile-1", "algorithm": "hnsw-1" }
+    ]
+  }
+}
+```
+
+### 4.2 semantic block (template)
+```json
+{
+  "semantic": {
+    "configurations": [
+      {
+        "name": "ewa-semantic",
+        "prioritizedFields": {
+          "titleField": { "fieldName": "section_path" },
+          "prioritizedContentFields": [{ "fieldName": "content_md" }],
+          "prioritizedKeywordsFields": [
+            { "fieldName": "sid" },
+            { "fieldName": "category" },
+            { "fieldName": "severity" }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+### 4.3 vector field template (chunks index)
+```json
+{
+  "name": "content_vector",
+  "type": "Collection(Edm.Single)",
+  "searchable": true,
+  "retrievable": false,
+  "stored": false,
+  "dimensions": 3072,
+  "vectorSearchProfile": "vector-profile-1"
+}
+```
