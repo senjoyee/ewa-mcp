@@ -1,12 +1,14 @@
 param location string
 param prefix string
 param environment string
+param tags object = {}
 
 var openaiName = '${prefix}-openai-${environment}'
 
 resource openai 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = {
   name: openaiName
   location: location
+  tags: tags
   kind: 'OpenAI'
   sku: {
     name: 'S0'

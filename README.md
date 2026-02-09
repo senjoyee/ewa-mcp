@@ -34,7 +34,8 @@ cd infrastructure/bicep
 az deployment group create \
   --resource-group ewa-mcp-rg \
   --template-file main.bicep \
-  --parameters environment=prod
+  --parameters environment=prod \
+  --parameters personResponsible="Your Name"  # Required tag
 ```
 
 ### 2. Setup Search Indexes

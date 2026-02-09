@@ -76,6 +76,7 @@ def deploy_bicep(
     resource_group: str,
     location: str,
     environment: str,
+    person_responsible: str,
     bicep_dir: Path
 ) -> dict:
     """Deploy Azure resources via Bicep."""
@@ -102,7 +103,7 @@ def deploy_bicep(
         "--resource-group", resource_group,
         "--template-file", str(bicep_dir / "main.bicep"),
         "--parameters", f"environment={environment}",
-        "--parameters", f"prefix=ewa",
+        "--parameters", f"personResponsible={person_responsible}",
         "--name", deployment_name,
         "--subscription", subscription,
         "--output", "json"
@@ -435,6 +436,11 @@ def main():
         help="Environment name (default: prod)"
     )
     parser.add_argument(
+        "--person-responsible",
+        required=True,
+        help="Person responsible for the resources (mandatory tag)"
+    )
+    parser.add_argument(
         "--skip-bicep",
         action="store_true",
         help="Skip Bicep deployment (use existing resources)"
@@ -477,6 +483,7 @@ def main():
             args.resource_group,
             args.location,
             args.environment,
+            args.person_responsible,
             bicep_dir
         )
         env_vars.update(bicep_outputs)

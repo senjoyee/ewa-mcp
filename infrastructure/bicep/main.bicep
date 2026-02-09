@@ -1,6 +1,14 @@
 param location string = resourceGroup().location
 param prefix string = 'ewa'
 param environment string = 'prod'
+param personResponsible string
+
+// Common tags for all resources
+var commonTags = {
+  PersonResponsible: personResponsible
+  Environment: environment
+  Project: 'ewa-mcp'
+}
 
 // Azure AI Search
 module search 'search.bicep' = {
@@ -9,6 +17,7 @@ module search 'search.bicep' = {
     location: location
     prefix: prefix
     environment: environment
+    tags: commonTags
   }
 }
 
@@ -19,6 +28,7 @@ module openai 'openai.bicep' = {
     location: location
     prefix: prefix
     environment: environment
+    tags: commonTags
   }
 }
 
@@ -29,6 +39,7 @@ module storage 'storage.bicep' = {
     location: location
     prefix: prefix
     environment: environment
+    tags: commonTags
   }
 }
 
@@ -39,6 +50,7 @@ module eventgrid 'eventgrid.bicep' = {
     location: location
     prefix: prefix
     environment: environment
+    tags: commonTags
   }
 }
 
@@ -49,6 +61,7 @@ module containerapp 'containerapp.bicep' = {
     location: location
     prefix: prefix
     environment: environment
+    tags: commonTags
   }
 }
 

@@ -1,6 +1,7 @@
 param location string
 param prefix string
 param environment string
+param tags object = {}
 
 var envName = '${prefix}-env-${environment}'
 var logAnalyticsName = '${prefix}-logs-${environment}'
@@ -8,6 +9,7 @@ var logAnalyticsName = '${prefix}-logs-${environment}'
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: logAnalyticsName
   location: location
+  tags: tags
   properties: {
     sku: {
       name: 'PerGB2018'
@@ -19,6 +21,7 @@ resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
 resource containerAppEnv 'Microsoft.App/managedEnvironments@2023-11-02-preview' = {
   name: envName
   location: location
+  tags: tags
   properties: {
     appLogsConfiguration: {
       destination: 'log-analytics'
