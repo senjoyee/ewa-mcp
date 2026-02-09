@@ -1,9 +1,9 @@
 param location string
 param prefix string
-param environment string
+param envSuffix string
 param tags object = {}
 
-var openaiName = '${prefix}-openai-${environment}'
+var openaiName = '${prefix}-openai${envSuffix}'
 
 resource openai 'Microsoft.CognitiveServices/accounts@2023-10-01-preview' = {
   name: openaiName

@@ -148,18 +148,19 @@ def deploy_bicep(
         return {}
 
 
-def get_resource_keys(resource_group: str, subscription: str) -> dict:
+def get_resource_keys(resource_group: str, subscription: str, environment: str = "") -> dict:
     """Get API keys for deployed resources."""
     print(f"\n{'='*60}")
     print("Step 2: Retrieving Resource API Keys")
     print(f"{'='*60}")
     
     keys = {}
+    env_suffix = f"-{environment}" if environment else ""
     
     # Search admin key
     stdout, stderr, code = run_cmd([
         "az", "search", "admin-key", "show",
-        "--service-name", f"ewa-search-prod",
+        "--service-name", f"ewa-search{env_suffix}",
         "--resource-group", resource_group,
         "--subscription", subscription,
         "--output", "json"
@@ -175,7 +176,7 @@ def get_resource_keys(resource_group: str, subscription: str) -> dict:
     # OpenAI key
     stdout, stderr, code = run_cmd([
         "az", "cognitiveservices", "account", "keys", "list",
-        "--name", f"ewa-openai-prod",
+        "--name", f"ewa-openai{env_suffix}",
         "--resource-group", resource_group,
         "--subscription", subscription,
         "--output", "json"
@@ -191,7 +192,7 @@ def get_resource_keys(resource_group: str, subscription: str) -> dict:
     # Storage key
     stdout, stderr, code = run_cmd([
         "az", "storage", "account", "keys", "list",
-        "--account-name", f"ewastgprod",
+        "--account-name", f"ewastg{env_suffix}",
         "--resource-group", resource_group,
         "--subscription", subscription,
         "--output", "json"
@@ -208,7 +209,7 @@ def get_resource_keys(resource_group: str, subscription: str) -> dict:
     # Event Grid key
     stdout, stderr, code = run_cmd([
         "az", "eventgrid", "topic", "key", "list",
-        "--name", f"ewa-events-prod",
+        "--name", f"ewa-events{env_suffix}",
         "--resource-group", resource_group,
         "--subscription", subscription,
         "--output", "json"
@@ -263,12 +264,15 @@ def deploy_function_app(
     resource_group: str,
     function_name: str,
     processor_dir: Path,
-    env_vars: dict
+    env_vars: dict,
+    environment: str = ""
 ):
     """Deploy Azure Function."""
     print(f"\n{'='*60}")
     print("Step 4: Deploying Azure Function")
     print(f"{'='*60}")
+    
+    env_suffix = f"-{environment}" if environment else ""
     
     # Create local.settings.json
     local_settings = {
@@ -300,7 +304,7 @@ def deploy_function_app(
         "az", "functionapp", "create",
         "--name", function_name,
         "--resource-group", resource_group,
-        "--storage-account", "ewastgprod",
+        "--storage-account", f"ewastg{env_suffix}",
         "--consumption-plan-location", "eastus",
         "--runtime", "python",
         "--runtime-version", "3.11",
@@ -373,7 +377,7 @@ def deploy_mcp_server(
             "az", "containerapp", "create",
             "--name", container_app_name,
             "--resource-group", resource_group,
-            "--environment", f"ewa-env-prod",
+            "--environment", f"ewa-env{env_suffix}",
             "--image", f"{acr_name}.azurecr.io/ewa-mcp:latest",
             "--target-port", "8000",
             "--ingress", "external",
@@ -447,8 +451,8 @@ def main():
     )
     parser.add_argument(
         "--environment",
-        default="prod",
-        help="Environment name (default: prod)"
+        default="",
+        help="Environment suffix (default: empty for cleaner names)"
     )
     parser.add_argument(
         "--person-responsible",
@@ -526,7 +530,7 @@ def main():
         
         # Get resource keys (skip OpenAI if using existing)
         if not args.use_existing_openai:
-            resource_keys = get_resource_keys(args.resource_group, args.subscription)
+            resource_keys = get_resource_keys(args.resource_group, args.subscription, args.environment)
             env_vars.update(resource_keys)
         else:
             print("\n⚡ Using existing OpenAI deployment, skipping key retrieval")
@@ -555,12 +559,14 @@ def main():
     
     # Step 3: Deploy Azure Function
     if not args.skip_function:
-        function_name = f"ewa-processor-{args.environment}"
+        env_suffix = f"-{args.environment}" if args.environment else ""
+        function_name = f"ewa-processor{env_suffix}"
         deploy_function_app(
             args.resource_group,
             function_name,
             processor_dir,
-            env_vars
+            env_vars,
+            args.environment
         )
     else:
         print("\n⚡ Skipping Azure Function deployment")
@@ -568,8 +574,10 @@ def main():
     # Step 4: Deploy MCP Server
     mcp_fqdn = None
     if not args.skip_mcp:
-        acr_name = f"ewaacr{args.environment}"
-        container_app_name = f"ewa-mcp-{args.environment}"
+        env_suffix = f"-{args.environment}" if args.environment else ""
+        env_suffix_clean = args.environment if args.environment else ""
+        acr_name = f"ewaacr{env_suffix_clean}"
+        container_app_name = f"ewa-mcp{env_suffix}"
         
         # Create Dockerfile if it doesn't exist
         dockerfile_path = mcp_server_dir / "Dockerfile"
@@ -602,11 +610,12 @@ CMD ["python", "main.py"]
         print("\n⚡ Skipping MCP server deployment")
     
     # Save deployment info
+    output_suffix = f"-{args.environment}" if args.environment else ""
     save_deployment_info(
         args.resource_group,
         env_vars,
         mcp_fqdn,
-        f"deployment-{args.environment}.json"
+        f"deployment{output_suffix}.json"
     )
     
     print(f"\n{'='*60}")
@@ -632,7 +641,8 @@ CMD ["python", "main.py"]
     
     print(f"\nResource Group: {args.resource_group}")
     print(f"Location: {args.location}")
-    print(f"Environment: {args.environment}")
+    if args.environment:
+        print(f"Environment: {args.environment}")
 
 
 if __name__ == "__main__":

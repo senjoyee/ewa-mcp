@@ -34,8 +34,18 @@ cd infrastructure/bicep
 az deployment group create \
   --resource-group ewa-mcp-rg \
   --template-file main.bicep \
-  --parameters environment=prod \
-  --parameters personResponsible="Your Name"  # Required tag
+  --parameters personResponsible="Your Name"
+```
+
+Or with existing OpenAI:
+```bash
+az deployment group create \
+  --resource-group ewa-mcp-rg \
+  --template-file main.bicep \
+  --parameters personResponsible="Your Name" \
+  --parameters deployOpenAI=false \
+  --parameters existingOpenAIEndpoint="https://<project>.openai.azure.com/" \
+  --parameters existingOpenAIKey="<key>"
 ```
 
 ### 2. Setup Search Indexes
@@ -97,7 +107,6 @@ python deploy.py \
 az deployment group create \
   --resource-group ewa-mcp-rg \
   --template-file infrastructure/bicep/main.bicep \
-  --parameters environment=prod \
   --parameters personResponsible="Your Name" \
   --parameters deployOpenAI=false \
   --parameters existingOpenAIEndpoint="https://your-openai.openai.azure.com/" \

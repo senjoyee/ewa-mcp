@@ -1,10 +1,10 @@
 param location string
 param prefix string
-param environment string
+param envSuffix string
 param tags object = {}
 
-var envName = '${prefix}-env-${environment}'
-var logAnalyticsName = '${prefix}-logs-${environment}'
+var envName = '${prefix}-env${envSuffix}'
+var logAnalyticsName = '${prefix}-logs${envSuffix}'
 
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
   name: logAnalyticsName

@@ -1,6 +1,6 @@
 param location string = resourceGroup().location
 param prefix string = 'ewa'
-param environment string = 'prod'
+param environment string = ''
 param personResponsible string
 
 // OpenAI deployment options
@@ -8,10 +8,12 @@ param deployOpenAI bool = true
 param existingOpenAIEndpoint string = ''
 param existingOpenAIKey string = ''
 
+// Helper to build resource names - includes separator only if environment is set
+var envSuffix = environment == '' ? '' : '-${environment}'
+
 // Common tags for all resources
 var commonTags = {
   PersonResponsible: personResponsible
-  Environment: environment
   Project: 'ewa-mcp'
 }
 
@@ -21,7 +23,7 @@ module search 'search.bicep' = {
   params: {
     location: location
     prefix: prefix
-    environment: environment
+    envSuffix: envSuffix
     tags: commonTags
   }
 }
@@ -32,7 +34,7 @@ module openai 'openai.bicep' = if (deployOpenAI) {
   params: {
     location: location
     prefix: prefix
-    environment: environment
+    envSuffix: envSuffix
     tags: commonTags
   }
 }
@@ -43,7 +45,7 @@ module storage 'storage.bicep' = {
   params: {
     location: location
     prefix: prefix
-    environment: environment
+    envSuffix: envSuffix
     tags: commonTags
   }
 }
@@ -54,7 +56,7 @@ module eventgrid 'eventgrid.bicep' = {
   params: {
     location: location
     prefix: prefix
-    environment: environment
+    envSuffix: envSuffix
     tags: commonTags
   }
 }
@@ -65,7 +67,7 @@ module containerapp 'containerapp.bicep' = {
   params: {
     location: location
     prefix: prefix
-    environment: environment
+    envSuffix: envSuffix
     tags: commonTags
   }
 }

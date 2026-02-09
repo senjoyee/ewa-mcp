@@ -1,9 +1,9 @@
 param location string
 param prefix string
-param environment string
+param envSuffix string
 param tags object = {}
 
-var storageName = '${prefix}stg${environment}${uniqueString(resourceGroup().id)}'
+var storageName = '${prefix}stg${envSuffix}${uniqueString(resourceGroup().id)}'
 
 resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: take(storageName, 24)
