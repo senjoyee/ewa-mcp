@@ -3,6 +3,11 @@ param prefix string = 'ewa'
 param environment string = 'prod'
 param personResponsible string
 
+// OpenAI deployment options
+param deployOpenAI bool = true
+param existingOpenAIEndpoint string = ''
+param existingOpenAIKey string = ''
+
 // Common tags for all resources
 var commonTags = {
   PersonResponsible: personResponsible
@@ -21,8 +26,8 @@ module search 'search.bicep' = {
   }
 }
 
-// Azure OpenAI
-module openai 'openai.bicep' = {
+// Azure OpenAI (conditional deployment)
+module openai 'openai.bicep' = if (deployOpenAI) {
   name: 'openaiDeploy'
   params: {
     location: location
@@ -68,7 +73,8 @@ module containerapp 'containerapp.bicep' = {
 // Outputs
 output searchEndpoint string = search.outputs.endpoint
 output searchName string = search.outputs.name
-output openaiEndpoint string = openai.outputs.endpoint
+output openaiEndpoint string = deployOpenAI ? openai.outputs.endpoint : existingOpenAIEndpoint
+output openaiKey string = deployOpenAI ? openai.outputs.apiKey : existingOpenAIKey
 output storageConnectionString string = storage.outputs.connectionString
 output eventgridEndpoint string = eventgrid.outputs.endpoint
 output containerAppEnvironmentId string = containerapp.outputs.environmentId

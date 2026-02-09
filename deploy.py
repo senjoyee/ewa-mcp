@@ -77,6 +77,9 @@ def deploy_bicep(
     location: str,
     environment: str,
     person_responsible: str,
+    deploy_openai: bool,
+    existing_openai_endpoint: str,
+    existing_openai_key: str,
     bicep_dir: Path
 ) -> dict:
     """Deploy Azure resources via Bicep."""
@@ -98,16 +101,28 @@ def deploy_bicep(
     # Deploy Bicep template
     deployment_name = f"ewa-deploy-{int(time.time())}"
     
+    # Build parameters
+    bicep_params = [
+        "--parameters", f"environment={environment}",
+        "--parameters", f"personResponsible={person_responsible}",
+        "--parameters", f"deployOpenAI={str(deploy_openai).lower()}",
+    ]
+    
+    # Add existing OpenAI params if not deploying new one
+    if not deploy_openai:
+        bicep_params.extend([
+            "--parameters", f"existingOpenAIEndpoint={existing_openai_endpoint}",
+            "--parameters", f"existingOpenAIKey={existing_openai_key}",
+        ])
+    
     stdout, stderr, code = run_cmd([
         "az", "deployment", "group", "create",
         "--resource-group", resource_group,
         "--template-file", str(bicep_dir / "main.bicep"),
-        "--parameters", f"environment={environment}",
-        "--parameters", f"personResponsible={person_responsible}",
         "--name", deployment_name,
         "--subscription", subscription,
         "--output", "json"
-    ])
+    ] + bicep_params)
     
     if code != 0:
         print(f"❌ Bicep deployment failed: {stderr}")
@@ -441,6 +456,19 @@ def main():
         help="Person responsible for the resources (mandatory tag)"
     )
     parser.add_argument(
+        "--use-existing-openai",
+        action="store_true",
+        help="Use existing OpenAI deployment instead of creating new one"
+    )
+    parser.add_argument(
+        "--openai-endpoint",
+        help="Existing OpenAI endpoint (required with --use-existing-openai)"
+    )
+    parser.add_argument(
+        "--openai-key",
+        help="Existing OpenAI API key (required with --use-existing-openai)"
+    )
+    parser.add_argument(
         "--skip-bicep",
         action="store_true",
         help="Skip Bicep deployment (use existing resources)"
@@ -463,6 +491,11 @@ def main():
     
     args = parser.parse_args()
     
+    # Validate OpenAI arguments
+    if args.use_existing_openai and (not args.openai_endpoint or not args.openai_key):
+        print("❌ --openai-endpoint and --openai-key are required when using --use-existing-openai")
+        sys.exit(1)
+    
     # Paths
     script_dir = Path(__file__).parent.absolute()
     bicep_dir = script_dir / "infrastructure" / "bicep"
@@ -484,13 +517,20 @@ def main():
             args.location,
             args.environment,
             args.person_responsible,
+            not args.use_existing_openai,  # deploy_openai
+            args.openai_endpoint or "",
+            args.openai_key or "",
             bicep_dir
         )
         env_vars.update(bicep_outputs)
         
-        # Get resource keys
-        resource_keys = get_resource_keys(args.resource_group, args.subscription)
-        env_vars.update(resource_keys)
+        # Get resource keys (skip OpenAI if using existing)
+        if not args.use_existing_openai:
+            resource_keys = get_resource_keys(args.resource_group, args.subscription)
+            env_vars.update(resource_keys)
+        else:
+            print("\n⚡ Using existing OpenAI deployment, skipping key retrieval")
+            env_vars["openai_api_key"] = args.openai_key
     else:
         print("\n⚡ Skipping Bicep deployment")
         # Load from existing or prompt

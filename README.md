@@ -77,6 +77,35 @@ Add to Claude Desktop config:
 }
 ```
 
+### Using Existing OpenAI Deployment
+
+If you already have an OpenAI deployment with `gpt-5.2` and `text-embedding-3-small`, you can skip creating a new one:
+
+**Option 1: With deploy.py script**
+```bash
+python deploy.py \
+  --subscription <id> \
+  --resource-group ewa-mcp-rg \
+  --person-responsible "Your Name" \
+  --use-existing-openai \
+  --openai-endpoint "https://your-openai.openai.azure.com/" \
+  --openai-key "your-api-key"
+```
+
+**Option 2: Manual Bicep deployment**
+```bash
+az deployment group create \
+  --resource-group ewa-mcp-rg \
+  --template-file infrastructure/bicep/main.bicep \
+  --parameters environment=prod \
+  --parameters personResponsible="Your Name" \
+  --parameters deployOpenAI=false \
+  --parameters existingOpenAIEndpoint="https://your-openai.openai.azure.com/" \
+  --parameters existingOpenAIKey="your-api-key"
+```
+
+This will use your existing deployment for both GPT-5.2 Vision alert extraction and text-embedding-3-small vectorization.
+
 ## MCP Tools
 
 | Tool | Description |
