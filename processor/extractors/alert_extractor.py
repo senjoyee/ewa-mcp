@@ -253,39 +253,37 @@ class VisionAlertExtractor:
         }
 
         try:
-            response = self.client.responses.create(
+            response = self.client.chat.completions.create(
                 model=self.deployment,
-                input=[{"role": "user", "content": content}],
+                messages=[{"role": "user", "content": content}],
                 response_format=response_format,
-                reasoning={"effort": "none"},
-                max_output_tokens=4096,
+                max_tokens=4096,
                 timeout=self.request_timeout_seconds,
             )
-        except TypeError:
-            response = self.client.responses.create(
-                model=self.deployment,
-                input=[{"role": "user", "content": content}],
-                text=text_format,
-                reasoning={"effort": "none"},
-                max_output_tokens=4096,
-                timeout=self.request_timeout_seconds,
-            )
-
+        except Exception as exc:
+            # If standard JSON schema format fails, try without structured outputs
+            if "response_format" in str(exc).lower() or "schema" in str(exc).lower():
+                logger.warning("Structured outputs failing, trying standard JSON mode: %s", exc)
+                response = self.client.chat.completions.create(
+                    model=self.deployment,
+                    messages=[{"role": "user", "content": content}],
+                    response_format={"type": "json_object"},
+                    max_tokens=4096,
+                    timeout=self.request_timeout_seconds,
+                )
+            else:
+                raise
+        
         result_json: Dict[str, Any] = {}
-        parsed = getattr(response, "output_parsed", None)
-        if parsed is not None:
-            if hasattr(parsed, "model_dump"):
-                result_json = parsed.model_dump()
-            elif isinstance(parsed, dict):
-                result_json = parsed
-            elif isinstance(parsed, list) and len(parsed) == 1 and isinstance(parsed[0], dict):
-                result_json = parsed[0]
-
-        if not result_json:
-            result_text = getattr(response, "output_text", None) or _extract_text_from_response_output(
-                getattr(response, "output", None)
-            )
-            result_json = _parse_result_json(result_text)
+        message = response.choices[0].message
+        
+        # In chat completions, standard models return strings via message.content
+        if message.content:
+            try:
+                result_json = _parse_result_json(message.content)
+            except ValueError as e:
+                logger.error("Failed to parse JSON from model output: %s", e)
+                result_json = {"alerts": [], "pages_processed": len(image_bytes_list), "extraction_confidence": 0.0}
         
         # Convert to Alert models
         alerts = []

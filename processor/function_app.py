@@ -52,7 +52,7 @@ def _parse_blob_path(blob_url: str) -> tuple[str, str, str]:
     return container_name, customer_id, file_name
 
 
-@app.route(route="ProcessEwaBlob", methods=["POST"], auth_level=func.AuthLevel.FUNCTION)
+@app.route(route="process_ewa_blob", methods=["POST"], auth_level=func.AuthLevel.FUNCTION)
 def process_ewa_blob(req: func.HttpRequest) -> func.HttpResponse:
     """HTTP-triggered handler for Event Grid BlobCreated events.
 

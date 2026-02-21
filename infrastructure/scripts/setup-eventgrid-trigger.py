@@ -22,12 +22,17 @@ The script retrieves the function-level host key automatically via the Azure CLI
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 
 
 def run(cmd: list[str], check: bool = True, capture: bool = True) -> subprocess.CompletedProcess:
     """Run an az CLI command and return the result."""
+    # On Windows, 'az' is actually a .cmd batch script
+    if os.name == 'nt' and cmd[0] == 'az':
+        cmd[0] = 'az.cmd'
+        
     print("  »", " ".join(cmd))
     result = subprocess.run(
         cmd,
@@ -99,7 +104,7 @@ def main():
             print("ERROR:", result.stderr or result.stdout)
             sys.exit(result.returncode)
     else:
-        print("       System Topic created ✓")
+        print("       System Topic created OK")
 
     # ── Retrieve function host key ───────────────────────────────────────────
     print(f"\n[4/5] Fetching function key for '{func_name}'...")
@@ -153,14 +158,14 @@ def main():
                 "--resource-group", rg,
                 "--endpoint", webhook_url,
             ])
-            print("       Subscription updated ✓")
+            print("       Subscription updated OK")
         else:
             print("ERROR:", result.stderr or result.stdout)
             sys.exit(result.returncode)
     else:
-        print("       Subscription created ✓")
+        print("       Subscription created OK")
 
-    print("\n✅  Event Grid trigger wiring complete!")
+    print("\n[SUCCESS]  Event Grid trigger wiring complete!")
     print(f"    Upload a PDF to container '{container}' to test.")
     print(f"    Monitor: az functionapp function show --name {func_app} "
           f"--resource-group {rg} --function-name {func_name}")
