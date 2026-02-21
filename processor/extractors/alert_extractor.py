@@ -260,7 +260,7 @@ class VisionAlertExtractor:
                 model=self.deployment,
                 messages=[{"role": "user", "content": content}],
                 response_format=response_format,
-                max_tokens=4096,
+                extra_body={"max_completion_tokens": 4096},
                 timeout=self.request_timeout_seconds,
             )
         except Exception as exc:
@@ -271,7 +271,7 @@ class VisionAlertExtractor:
                     model=self.deployment,
                     messages=[{"role": "user", "content": content}],
                     response_format={"type": "json_object"},
-                    max_tokens=4096,
+                    extra_body={"max_completion_tokens": 4096},
                     timeout=self.request_timeout_seconds,
                 )
             else:
