@@ -227,13 +227,16 @@ class VisionAlertExtractor:
         Returns:
             AlertExtractionResult with extracted alerts
         """
-        # Build content array with images for Responses API
-        content = [{"type": "input_text", "text": ALERT_EXTRACTION_PROMPT}]
+        # Build content array with images for Chat Completions API
+        content = [{"type": "text", "text": ALERT_EXTRACTION_PROMPT}]
 
         for idx, img_bytes in enumerate(image_bytes_list, start=1):
             base64_image = base64.b64encode(img_bytes).decode('utf-8')
-            content.append({"type": "input_image", "image_url": f"data:image/png;base64,{base64_image}"})
-            content.append({"type": "input_text", "text": f"[Page {idx}]"})
+            content.append({
+                "type": "image_url", 
+                "image_url": {"url": f"data:image/png;base64,{base64_image}"}
+            })
+            content.append({"type": "text", "text": f"[Page {idx}]"})
 
         response_format = {
             "type": "json_schema",
