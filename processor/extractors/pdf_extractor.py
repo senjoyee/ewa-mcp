@@ -7,7 +7,7 @@ from datetime import datetime
 import fitz  # PyMuPDF
 import pymupdf4llm
 
-from shared.models.document import Document
+from models.document import Document
 
 
 class PDFExtractor:

@@ -8,11 +8,8 @@ from pathlib import Path
 # Add shared models to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from fastapi import FastAPI, Request, Response
+from fastapi import FastAPI, Request
 from fastapi.responses import StreamingResponse
-from mcp.server import Server
-from mcp.server.models import InitializationOptions
-from mcp.types import TextContent, Tool
 
 from mcp_server.auth.api_key import APIKeyMiddleware
 from mcp_server.search.client import SearchClient
@@ -23,77 +20,55 @@ from mcp_server.tools import (
     get_section,
     ask_ewa_scoped,
     compare_reports,
-    generate_action_pack
+    generate_action_pack,
 )
 
+# ---------------------------------------------------------------------------
+# Shared search client (initialised once at startup)
+# ---------------------------------------------------------------------------
 
-# Initialize MCP server
-server = Server("ewa-mcp")
-
-# Initialize search client
 search_client = SearchClient(
     endpoint=os.environ["AZURE_SEARCH_ENDPOINT"],
-    api_key=os.environ["AZURE_SEARCH_API_KEY"]
+    api_key=os.environ["AZURE_SEARCH_API_KEY"],
 )
 
+# ---------------------------------------------------------------------------
+# Tool registry: name → (definition_fn, execute_fn)
+# ---------------------------------------------------------------------------
 
-@server.list_tools()
-async def handle_list_tools() -> list[Tool]:
-    """List available MCP tools."""
-    return [
-        list_reports.get_tool_definition(),
-        get_alert_overview.get_tool_definition(),
-        get_alert_detail.get_tool_definition(),
-        get_section.get_tool_definition(),
-        ask_ewa_scoped.get_tool_definition(),
-        compare_reports.get_tool_definition(),
-        generate_action_pack.get_tool_definition()
-    ]
+_TOOLS = [
+    list_reports,
+    get_alert_overview,
+    get_alert_detail,
+    get_section,
+    ask_ewa_scoped,
+    compare_reports,
+    generate_action_pack,
+]
 
-
-@server.call_tool()
-async def handle_call_tool(name: str, arguments: dict | None) -> list[TextContent]:
-    """Handle tool calls."""
-    arguments = arguments or {}
-    
-    try:
-        if name == "list_reports":
-            result = await list_reports.execute(search_client, arguments)
-        elif name == "get_alert_overview":
-            result = await get_alert_overview.execute(search_client, arguments)
-        elif name == "get_alert_detail":
-            result = await get_alert_detail.execute(search_client, arguments)
-        elif name == "get_section":
-            result = await get_section.execute(search_client, arguments)
-        elif name == "ask_ewa_scoped":
-            result = await ask_ewa_scoped.execute(search_client, arguments)
-        elif name == "compare_reports":
-            result = await compare_reports.execute(search_client, arguments)
-        elif name == "generate_action_pack":
-            result = await generate_action_pack.execute(search_client, arguments)
-        else:
-            raise ValueError(f"Unknown tool: {name}")
-        
-        return [TextContent(type="text", text=result)]
-    
-    except Exception as e:
-        return [TextContent(type="text", text=f'{{"error": "{str(e)}"}}')]
+_TOOL_MAP = {mod.get_tool_definition().name: mod for mod in _TOOLS}
 
 
-# Create FastAPI app
+def _all_tool_definitions() -> list:
+    """Return a list of Tool objects for every registered tool."""
+    return [mod.get_tool_definition() for mod in _TOOLS]
+
+
+# ---------------------------------------------------------------------------
+# FastAPI application
+# ---------------------------------------------------------------------------
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Lifespan context manager."""
-    # Startup
+    """Lifespan context manager (no-op for now)."""
     yield
-    # Shutdown
 
 
 app = FastAPI(
     title="EWA MCP Server",
     description="SAP EarlyWatch Alert MCP Server with Azure AI Search",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
 )
 
 # Add API key middleware
@@ -108,53 +83,72 @@ async def health_check():
 
 @app.post("/mcp")
 async def mcp_endpoint(request: Request):
-    """MCP Streamable HTTP endpoint."""
+    """MCP Streamable HTTP JSON-RPC endpoint."""
     body = await request.json()
-    
-    # Handle initialization
-    if body.get("method") == "initialize":
+    method = body.get("method")
+    req_id = body.get("id")
+
+    # ── initialize ──────────────────────────────────────────────────────────
+    if method == "initialize":
         return {
             "jsonrpc": "2.0",
-            "id": body.get("id"),
+            "id": req_id,
             "result": {
                 "protocolVersion": "2024-11-05",
-                "capabilities": {
-                    "tools": {}
-                },
-                "serverInfo": {
-                    "name": "ewa-mcp",
-                    "version": "1.0.0"
-                }
-            }
+                "capabilities": {"tools": {}},
+                "serverInfo": {"name": "ewa-mcp", "version": "1.0.0"},
+            },
         }
-    
-    # Handle tools/list
-    if body.get("method") == "tools/list":
-        tools = await handle_list_tools()
+
+    # ── tools/list ──────────────────────────────────────────────────────────
+    if method == "tools/list":
+        tools = _all_tool_definitions()
         return {
             "jsonrpc": "2.0",
-            "id": body.get("id"),
-            "result": {"tools": [t.model_dump() for t in tools]}
+            "id": req_id,
+            "result": {"tools": [t.model_dump() for t in tools]},
         }
-    
-    # Handle tools/call
-    if body.get("method") == "tools/call":
+
+    # ── tools/call ──────────────────────────────────────────────────────────
+    if method == "tools/call":
         params = body.get("params", {})
         name = params.get("name")
-        arguments = params.get("arguments", {})
-        
-        result = await handle_call_tool(name, arguments)
-        
-        return {
-            "jsonrpc": "2.0",
-            "id": body.get("id"),
-            "result": {
-                "content": [{"type": "text", "text": r.text} for r in result],
-                "isError": False
+        arguments = params.get("arguments") or {}
+
+        tool_module = _TOOL_MAP.get(name)
+        if tool_module is None:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {"code": -32601, "message": f"Unknown tool: {name}"},
             }
-        }
-    
-    return {"jsonrpc": "2.0", "id": body.get("id"), "error": {"code": -32601, "message": "Method not found"}}
+
+        try:
+            result_text = await tool_module.execute(search_client, arguments)
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [{"type": "text", "text": result_text}],
+                    "isError": False,
+                },
+            }
+        except Exception as e:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [{"type": "text", "text": f'{{"error": "{e}"}}'}],
+                    "isError": True,
+                },
+            }
+
+    # ── unknown method ───────────────────────────────────────────────────────
+    return {
+        "jsonrpc": "2.0",
+        "id": req_id,
+        "error": {"code": -32601, "message": "Method not found"},
+    }
 
 
 @app.get("/mcp/sse")
@@ -162,11 +156,8 @@ async def mcp_sse():
     """Legacy SSE endpoint for backward compatibility."""
     async def event_generator():
         yield "event: endpoint\ndata: /mcp\n\n"
-    
-    return StreamingResponse(
-        event_generator(),
-        media_type="text/event-stream"
-    )
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
 if __name__ == "__main__":

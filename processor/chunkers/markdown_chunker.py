@@ -5,8 +5,8 @@ import uuid
 from typing import List, Tuple, Optional
 from datetime import datetime
 
-from shared.models.chunk import Chunk
-from shared.models.alert import Alert, Severity, Category
+from models.chunk import Chunk
+from models.alert import Alert, Severity, Category
 
 
 class MarkdownChunker:
@@ -136,14 +136,17 @@ class MarkdownChunker:
         current_level: int,
         current_header: str
     ) -> str:
-        """Build hierarchical section path like '1. Overview/1.1 Hardware'."""
+        """Build hierarchical section path like '1. Overview/1.1 Hardware'.
+        
+        Walks all sections up to and including current_idx, tracking
+        the most-recently-seen header at each ancestor level, then
+        joins them in order to form the full path.
+        """
         if current_level == 0:
             return current_header
         
-        path_parts = []
-        
-        # Track section numbers at each level
-        level_counters = {}
+        # level_counters[lvl] = (counter, header_text)
+        level_counters: dict = {}
         
         for i in range(current_idx + 1):
             level, header, _, _, _ = sections[i]
@@ -151,30 +154,21 @@ class MarkdownChunker:
             if level == 0:
                 continue
             
-            if level not in level_counters:
-                level_counters[level] = 0
+            # Increment counter for this level
+            prev_count = level_counters.get(level, (0, ""))[0]
+            level_counters[level] = (prev_count + 1, header)
             
-            level_counters[level] += 1
-            
-            # Reset deeper levels
-            for l in list(level_counters.keys()):
-                if l > level:
-                    del level_counters[l]
-            
-            if i == current_idx:
-                # Build path for current section
-                for l in sorted(level_counters.keys()):
-                    if l in level_counters:
-                        # Find the header at this level in the chain
-                        for j in range(i + 1):
-                            lj, hj, _, _, _ = sections[j]
-                            if lj == l:
-                                if l == current_level:
-                                    path_parts.append(f"{level_counters[l]}. {hj}")
-                                elif l < current_level:
-                                    path_parts.append(f"{level_counters[l]}. {hj}")
-                                break
-                break
+            # Reset all deeper levels so they restart under this heading
+            for lvl in list(level_counters.keys()):
+                if lvl > level:
+                    del level_counters[lvl]
+        
+        # Build path from all ancestor levels up to and including current_level
+        path_parts = [
+            f"{count}. {hdr}"
+            for lvl, (count, hdr) in sorted(level_counters.items())
+            if lvl <= current_level
+        ]
         
         return "/".join(path_parts) if path_parts else current_header
     

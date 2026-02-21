@@ -1,4 +1,4 @@
-"""Azure OpenAI text embedding generator."""
+"""Azure AI Foundry text embedding generator using text-embedding-3-small."""
 
 from typing import List
 import openai
@@ -6,27 +6,26 @@ from tenacity import retry, stop_after_attempt, wait_exponential
 
 
 class OpenAIEmbedder:
-    """Generate text embeddings using Azure OpenAI."""
+    """Generate text embeddings using text-embedding-3-small via Azure AI Foundry."""
     
     def __init__(
         self, 
         api_key: str, 
         endpoint: str, 
         deployment: str = "text-embedding-3-small",
-        dimensions: int = 1536
+        dimensions: int = 1536,
     ):
         """Initialize embedder.
         
         Args:
-            api_key: Azure OpenAI API key
-            endpoint: Azure OpenAI endpoint
+            api_key: Azure AI Foundry API key
+            endpoint: Azure AI Foundry endpoint (e.g., https://<project>.<region>.models.ai.azure.com)
             deployment: Embedding model deployment name
             dimensions: Embedding dimensions (1536 for text-embedding-3-small)
         """
-        self.client = openai.AzureOpenAI(
+        self.client = openai.OpenAI(
             api_key=api_key,
-            azure_endpoint=endpoint,
-            api_version="2023-05-15"
+            base_url=endpoint.rstrip("/") + "/"
         )
         self.deployment = deployment
         self.dimensions = dimensions
@@ -43,9 +42,10 @@ class OpenAIEmbedder:
         """
         response = self.client.embeddings.create(
             model=self.deployment,
-            input=text[:8000]  # Token limit safety
+            input=[text[:8000]],  # Token limit safety
+            dimensions=self.dimensions
         )
-        return response.data[0].embedding[:self.dimensions]
+        return response.data[0].embedding
     
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
     def embed_batch(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
@@ -68,10 +68,11 @@ class OpenAIEmbedder:
             
             response = self.client.embeddings.create(
                 model=self.deployment,
-                input=batch
+                input=batch,
+                dimensions=self.dimensions
             )
             
-            embeddings = [e.embedding[:self.dimensions] for e in response.data]
+            embeddings = [e.embedding for e in response.data]
             all_embeddings.extend(embeddings)
         
         return all_embeddings

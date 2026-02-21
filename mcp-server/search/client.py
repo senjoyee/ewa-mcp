@@ -58,6 +58,10 @@ class SearchClient:
             filters.append(f"severity eq '{kwargs['severity']}'")
         if kwargs.get("category"):
             filters.append(f"category eq '{kwargs['category']}'")
+        if kwargs.get("section_path"):
+            # Use search.ismatch for prefix/contains matching on section_path
+            escaped = kwargs['section_path'].replace("'", "''")
+            filters.append(f"search.ismatch('{escaped}', 'section_path')")
         
         return " and ".join(filters)
     
@@ -179,12 +183,9 @@ class SearchClient:
         """Perform vector search with filters."""
         client = self._get_client(self.chunks_index)
         
-        # Build filter
-        filter_kwargs = {"customer_id": customer_id}
-        if filters:
-            filter_kwargs.update(filters)
-        
-        filter_str = self._build_filter(**filter_kwargs)
+        # Build filter — pass customer_id positionally, remaining filters as kwargs
+        extra = filters or {}
+        filter_str = self._build_filter(customer_id, **extra)
         
         # Vector query
         vector_query = VectorizedQuery(
@@ -219,12 +220,9 @@ class SearchClient:
         """Perform hybrid search (keyword + vector)."""
         client = self._get_client(self.chunks_index)
         
-        # Build filter
-        filter_kwargs = {"customer_id": customer_id}
-        if filters:
-            filter_kwargs.update(filters)
-        
-        filter_str = self._build_filter(**filter_kwargs)
+        # Build filter — pass customer_id positionally, remaining filters as kwargs
+        extra = filters or {}
+        filter_str = self._build_filter(customer_id, **extra)
         
         # Vector query
         vector_query = VectorizedQuery(

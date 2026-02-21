@@ -8,7 +8,7 @@ from typing import Optional
 from azure.eventgrid import EventGridPublisherClient
 from azure.core.credentials import AzureKeyCredential
 
-from shared.models.document import ProcessingEvent
+from models.document import ProcessingEvent
 
 
 class EventGridPublisher:

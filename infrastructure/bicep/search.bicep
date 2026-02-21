@@ -2,7 +2,7 @@ param location string
 param prefix string
 param envSuffix string
 param tags object = {}
-param sku string = 'standard'
+param sku string = 'basic'
 
 var searchName = '${prefix}-search${envSuffix}'
 

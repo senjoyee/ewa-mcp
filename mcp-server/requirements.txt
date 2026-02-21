@@ -4,7 +4,6 @@ mcp>=1.0.0
 
 azure-search-documents>=11.4.0
 azure-identity>=1.15.0
-openai>=1.30.0
 
 pydantic>=2.7.0
 pydantic-settings>=2.3.0

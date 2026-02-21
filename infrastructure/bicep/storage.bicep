@@ -20,18 +20,19 @@ resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
 }
 
+// Blob Services
+resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
+  parent: storage
+  name: 'default'
+}
+
 // Blob container for EWA uploads
 resource blobContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
-  parent: storage::blobServices
+  parent: blobServices
   name: 'ewa-uploads'
   properties: {
     publicAccess: 'None'
   }
-}
-
-resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
-  parent: storage
-  name: 'default'
 }
 
 // Outputs

@@ -5,9 +5,9 @@ from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 from azure.search.documents.indexes import SearchIndexClient
 
-from shared.models.document import Document
-from shared.models.chunk import Chunk
-from shared.models.alert import Alert
+from models.document import Document
+from models.chunk import Chunk
+from models.alert import Alert
 
 
 class SearchIndexer:
