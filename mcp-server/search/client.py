@@ -111,7 +111,7 @@ class SearchClient:
         results = client.search(
             search_text="*",
             filter=filter_str,
-            order_by=["severity asc", "title asc"]
+            order_by=["title asc"]
         )
         
         alerts = []
