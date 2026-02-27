@@ -198,8 +198,8 @@ class SearchIndexer:
             "page_end": check.page_end,
             "page_range": check.page_range,
             "source_page": check.source_page,
-            "sap_note_ids": check.sap_note_ids,
+            "sap_note_ids": getattr(check, "sap_note_ids", None),
             "evidence_chunk_ids": check.evidence_chunk_ids,
-            "description": check.description,
-            "recommendation": check.recommendation,
+            "description": getattr(check, "description", None),
+            "recommendation": getattr(check, "recommendation", None),
         }

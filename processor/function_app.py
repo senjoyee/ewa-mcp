@@ -262,7 +262,7 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             return sum(x * y for x, y in zip(a, b)) / (denom_a * denom_b)
 
         check_texts = [
-            f"{c.topic_name or ''}. {c.subtopic_name or ''}. {c.description or ''} {c.recommendation or ''}"
+            f"{c.topic_name or ''}. {c.subtopic_name or ''}."
             for c in checks
         ]
         check_embeddings = embedder.embed_batch(check_texts) if checks else []
