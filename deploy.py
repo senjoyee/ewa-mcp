@@ -29,19 +29,23 @@ from typing import Optional
 
 def run_cmd(cmd: list, cwd: Optional[str] = None, capture: bool = True) -> tuple:
     """Run shell command and return (stdout, stderr, returncode)."""
-    print(f"Running: {' '.join(cmd)}")
-    
+    if os.name == 'nt' and cmd[0] in ['az', 'func', 'docker']:
+        if cmd[0] in ['az', 'func']:
+            cmd[0] = f"{cmd[0]}.cmd"
+        else:
+            cmd[0] = f"{cmd[0]}.exe"
+            
     if capture:
         result = subprocess.run(
             cmd, 
             capture_output=True, 
             text=True, 
             cwd=cwd,
-            shell=False
+            shell=(os.name == 'nt')
         )
         return result.stdout, result.stderr, result.returncode
     else:
-        result = subprocess.run(cmd, cwd=cwd)
+        result = subprocess.run(cmd, cwd=cwd, shell=(os.name == 'nt'))
         return "", "", result.returncode
 
 
@@ -57,18 +61,30 @@ def check_prerequisites():
     }
     
     for cmd, name in tools.items():
-        result = subprocess.run([cmd, "--version"], capture_output=True)
-        if result.returncode != 0:
-            print(f"❌ {name} not found. Please install {name}.")
+        executable = cmd
+        if os.name == 'nt':
+            if cmd in ['az', 'func']:
+                executable = f"{cmd}.cmd"
+            elif cmd == 'docker':
+                executable = f"{cmd}.exe"
+        
+        try:
+            result = subprocess.run([executable, "--version"], capture_output=True)
+            if result.returncode != 0:
+                print(f"[ERROR] {name} not found.")
+                sys.exit(1)
+            print(f"[OK] {name} found")
+        except FileNotFoundError:
+            print(f"[ERROR] {name} ({executable}) not found.")
             sys.exit(1)
-        print(f"✅ {name} found")
     
     # Check Azure login
-    result = subprocess.run(["az", "account", "show"], capture_output=True)
+    az_cmd = "az.cmd" if os.name == 'nt' else "az"
+    result = subprocess.run([az_cmd, "account", "show"], capture_output=True)
     if result.returncode != 0:
-        print("❌ Not logged into Azure. Run: az login")
+        print("[ERROR] Not logged into Azure.")
         sys.exit(1)
-    print("✅ Logged into Azure")
+    print("[OK] Logged into Azure")
 
 
 def deploy_bicep(

@@ -225,8 +225,8 @@ class VisionAlertExtractor:
                 max_output_tokens=16384,
                 timeout=self.request_timeout_seconds,
             )
-        except Exception as exc:
-            # If structured outputs fail, fall back to plain text output mode.
+        except openai.BadRequestError as exc:
+            # If structured outputs fail explicitly, fall back to plain text output mode.
             logger.warning("Structured outputs failing on Responses API, trying plain text: %s", exc)
             response = self.client.responses.create(
                 model=self.deployment,

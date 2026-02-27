@@ -167,6 +167,7 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             api_key=os.environ["AZURE_AI_FOUNDRY_API_KEY"],
             endpoint=os.environ["AZURE_AI_FOUNDRY_ENDPOINT"],
             deployment=os.environ.get("AZURE_AI_VISION_DEPLOYMENT", "gpt-5.2"),
+            request_timeout_seconds=600,
         )
         chunker = MarkdownChunker(max_chunk_size=4000)
         embedder = OpenAIEmbedder(
@@ -204,25 +205,26 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             event_publisher.publish_stage(customer_id, doc_id, sid, file_name, "alert_extraction")
 
         try:
-            with ThreadPoolExecutor(max_workers=1) as executor:
-                future = executor.submit(
-                    alert_extractor.extract_alerts,
-                    priority_images,
-                    customer_id,
-                    doc_id,
-                    sid,
-                    document.environment,
-                )
-                alert_result = future.result(timeout=180)
-
+            executor = ThreadPoolExecutor(max_workers=1)
+            future = executor.submit(
+                alert_extractor.extract_alerts,
+                priority_images,
+                customer_id,
+                doc_id,
+                sid,
+                document.environment,
+            )
+            alert_result = future.result(timeout=600)
             checks = alert_result.checks
             logging.info("Extracted %d check overview rows", len(checks))
         except FuturesTimeoutError:
-            logging.error("Alert extraction timed out after 180s; continuing without check-overview rows")
+            logging.error("Alert extraction timed out after 600s; continuing without check-overview rows")
             checks = []
         except Exception as exc:
             logging.exception("Alert extraction failed, continuing without alerts: %s", exc)
             checks = []
+        finally:
+            executor.shutdown(wait=False, cancel_futures=True)
 
         # Step 3: Chunk markdown
         logging.info("Step 3: Chunking markdown...")

@@ -35,7 +35,7 @@ class PDFExtractor:
         
         # Extract metadata
         pages = len(doc)
-        doc_id = f"{customer_id}_{sha256_hash[:16]}_{datetime.utcnow().strftime('%Y%m%d%H%M%S')}"
+        doc_id = f"{customer_id}_{sha256_hash[:16]}"
         first_page_text = doc[0].get_text() if pages > 0 else ""
         
         # Extract deterministic cover-page metadata

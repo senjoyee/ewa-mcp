@@ -47,7 +47,7 @@ class OpenAIEmbedder:
         )
         return response.data[0].embedding
     
-    @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
+    @retry(stop=stop_after_attempt(5), wait=wait_exponential(multiplier=2, min=4, max=60))
     def embed_batch(self, texts: List[str], batch_size: int = 16) -> List[List[float]]:
         """Generate embeddings for batch of texts.
         
