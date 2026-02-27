@@ -48,17 +48,13 @@ class CheckOverviewRow(BaseModel):
     subtopic_rating_raw: Optional[str] = Field(None, description="Raw symbol/text from subtopic rating column")
     topic_rating_normalized: Optional[str] = Field(None, description="red|yellow|green|grey|unknown")
     subtopic_rating_normalized: Optional[str] = Field(None, description="red|yellow|green|grey|unknown")
-    priority_bucket: Optional[str] = Field(None, description="very_high|high|medium|low|info|unknown")
     reference_page: Optional[str] = Field(None, description="Reference page to detailed section")
     reference_section: Optional[str] = Field(None, description="Reference section number/path")
     page_start: int = Field(..., description="Parsed page start from reference_page")
     page_end: int = Field(..., description="Parsed page end from reference_page")
     page_range: str = Field(..., description="Formatted reference page range")
     source_page: Optional[int] = Field(None, description="Page where row was detected")
-    sap_note_ids: List[str] = Field(default_factory=list, description="Referenced SAP notes")
     evidence_chunk_ids: List[str] = Field(default_factory=list, description="Linked evidence chunks")
-    description: Optional[str] = Field(None, description="Optional visible description text")
-    recommendation: Optional[str] = Field(None, description="Optional visible recommendation text")
 
 
 # Backward compatibility alias used across current pipeline/tooling imports.

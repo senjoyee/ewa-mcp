@@ -107,19 +107,9 @@ CHECK_OVERVIEW_EXTRACTION_SCHEMA: Dict[str, Any] = {
                         "type": ["string", "null"],
                         "enum": ["red", "yellow", "green", "grey", "unknown", None],
                     },
-                    "priority_bucket": {
-                        "type": ["string", "null"],
-                        "enum": ["very_high", "high", "medium", "low", "info", "unknown", None],
-                    },
-                    "sap_note_ids": {
-                        "type": "array",
-                        "items": {"type": "string"},
-                    },
                     "reference_page": {"type": ["string", "null"], "description": "Page number pointing to the detailed evidence/section"},
                     "reference_section": {"type": ["string", "null"], "description": "Section number (e.g., 3.1.2) if present in the table"},
                     "source_page": {"type": ["integer", "null"]},
-                    "description": {"type": ["string", "null"]},
-                    "recommendation": {"type": ["string", "null"]},
                 },
                 "required": [
                     "row_type",
@@ -129,13 +119,9 @@ CHECK_OVERVIEW_EXTRACTION_SCHEMA: Dict[str, Any] = {
                     "subtopic_rating_raw",
                     "topic_rating_normalized",
                     "subtopic_rating_normalized",
-                    "priority_bucket",
-                    "sap_note_ids",
                     "reference_page",
                     "reference_section",
                     "source_page",
-                    "description",
-                    "recommendation",
                 ],
                 "additionalProperties": False,
             },
@@ -157,12 +143,9 @@ Use this row mapping:
 - subtopic_name: value in Subtopic column when present.
 - topic_rating_raw / subtopic_rating_raw: raw visible icon/text marker in corresponding rating column.
 - topic_rating_normalized / subtopic_rating_normalized: normalize to red|yellow|green|grey|unknown.
-- priority_bucket: map severity bucket when implied (very_high|high|medium|low|info|unknown), else unknown/null.
 - reference_page: page reference in the row pointing to detailed evidence (if visible).
 - reference_section: section reference like 3.1.2 if visible.
 - source_page: page number of the image where this row is read.
-- sap_note_ids: SAP note IDs visible in the row.
-- description/recommendation: include only if explicitly visible in the row.
 
 Do not infer missing values; use null/unknown where appropriate.
 Output all rows in reading order."""
@@ -282,16 +265,12 @@ class VisionAlertExtractor:
                 subtopic_rating_raw=check_data.get("subtopic_rating_raw"),
                 topic_rating_normalized=check_data.get("topic_rating_normalized"),
                 subtopic_rating_normalized=check_data.get("subtopic_rating_normalized"),
-                priority_bucket=check_data.get("priority_bucket"),
                 reference_page=check_data.get("reference_page"),
                 reference_section=check_data.get("reference_section"),
                 page_start=page_start,
                 page_end=page_end,
                 page_range=ref_page,
-                source_page=check_data.get("source_page"),
-                sap_note_ids=check_data.get("sap_note_ids", []),
-                description=check_data.get("description"),
-                recommendation=check_data.get("recommendation")
+                source_page=check_data.get("source_page")
             )
             checks.append(check)
 
