@@ -125,25 +125,31 @@ def create_ewa_chunks_index(client: SearchIndexClient):
     print("Created index: ewa-chunks")
 
 
-def create_ewa_alerts_index(client: SearchIndexClient):
-    """Create ewa-alerts index for alert storage."""
+def create_ewa_check_overview_index(client: SearchIndexClient):
+    """Create ewa-check-overview index for check overview rows."""
     fields = [
-        SimpleField(name="alert_id", type=SearchFieldDataType.String, key=True),
+        SimpleField(name="check_id", type=SearchFieldDataType.String, key=True),
         SimpleField(name="customer_id", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="doc_id", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="sid", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="environment", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="report_date", type=SearchFieldDataType.DateTimeOffset, filterable=True, sortable=True),
-        SearchableField(name="title", type=SearchFieldDataType.String),
-        SimpleField(name="severity", type=SearchFieldDataType.String, filterable=True, facetable=True),
-        SimpleField(name="category", type=SearchFieldDataType.String, filterable=True, facetable=True),
-        SimpleField(name="section_path", type=SearchFieldDataType.String, filterable=True),
+        SimpleField(name="row_type", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SearchableField(name="topic_name", type=SearchFieldDataType.String),
+        SearchableField(name="subtopic_name", type=SearchFieldDataType.String),
+        SimpleField(name="topic_rating_raw", type=SearchFieldDataType.String),
+        SimpleField(name="subtopic_rating_raw", type=SearchFieldDataType.String),
+        SimpleField(name="topic_rating_normalized", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SimpleField(name="subtopic_rating_normalized", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SimpleField(name="priority_bucket", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SimpleField(name="reference_page", type=SearchFieldDataType.String, filterable=True),
+        SearchableField(name="reference_section", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="page_start", type=SearchFieldDataType.Int32),
         SimpleField(name="page_end", type=SearchFieldDataType.Int32),
         SimpleField(name="page_range", type=SearchFieldDataType.String),
+        SimpleField(name="source_page", type=SearchFieldDataType.Int32),
         SimpleField(name="evidence_chunk_ids", type=SearchFieldDataType.Collection(SearchFieldDataType.String)),
         SimpleField(name="sap_note_ids", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
-        SimpleField(name="tags", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
         SearchableField(name="description", type=SearchFieldDataType.String),
         SearchableField(name="recommendation", type=SearchFieldDataType.String),
     ]
@@ -152,12 +158,16 @@ def create_ewa_alerts_index(client: SearchIndexClient):
     semantic_config = SemanticConfiguration(
         name="ewa-semantic",
         prioritized_fields=SemanticPrioritizedFields(
-            title_field=SemanticField(field_name="title"),
-            content_fields=[SemanticField(field_name="title")],
+            title_field=SemanticField(field_name="topic_name"),
+            content_fields=[
+                SemanticField(field_name="topic_name"),
+                SemanticField(field_name="subtopic_name"),
+                SemanticField(field_name="description"),
+            ],
             keywords_fields=[
                 SemanticField(field_name="sid"),
-                SemanticField(field_name="category"),
-                SemanticField(field_name="severity")
+                SemanticField(field_name="priority_bucket"),
+                SemanticField(field_name="reference_section"),
             ]
         )
     )
@@ -165,12 +175,12 @@ def create_ewa_alerts_index(client: SearchIndexClient):
     semantic_search = SemanticSearch(configurations=[semantic_config])
     
     index = SearchIndex(
-        name="ewa-alerts",
+        name="ewa-check-overview",
         fields=fields,
         semantic_search=semantic_search
     )
     client.create_or_update_index(index)
-    print("Created index: ewa-alerts")
+    print("Created index: ewa-check-overview")
 
 
 def main():
@@ -187,7 +197,7 @@ def main():
     
     # Delete existing if requested
     if args.delete_existing:
-        for index_name in ["ewa-docs", "ewa-chunks", "ewa-alerts"]:
+        for index_name in ["ewa-docs", "ewa-chunks", "ewa-check-overview"]:
             try:
                 client.delete_index(index_name)
                 print(f"Deleted existing index: {index_name}")
@@ -197,11 +207,11 @@ def main():
     # Create indexes
     create_ewa_docs_index(client)
     create_ewa_chunks_index(client)
-    create_ewa_alerts_index(client)
+    create_ewa_check_overview_index(client)
     
     print("\nAll indexes created successfully!")
     print(f"Endpoint: {args.endpoint}")
-    print("Indexes: ewa-docs, ewa-chunks, ewa-alerts")
+    print("Indexes: ewa-docs, ewa-chunks, ewa-check-overview")
 
 
 if __name__ == "__main__":

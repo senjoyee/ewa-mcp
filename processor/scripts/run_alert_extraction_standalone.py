@@ -91,10 +91,10 @@ def main() -> int:
         "pages_rendered": len(priority_images),
         "render_output_dir": str(save_dir),
         "deployment": deployment,
-        "alerts_count": len(result.alerts),
+        "checks_count": len(result.checks),
         "pages_processed": result.pages_processed,
         "extraction_confidence": result.extraction_confidence,
-        "alerts": [a.model_dump(mode="json") for a in result.alerts],
+        "checks": [c.model_dump(mode="json") for c in result.checks],
     }
     print(json.dumps(output, indent=2, default=str))
     return 0

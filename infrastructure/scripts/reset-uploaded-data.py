@@ -23,7 +23,7 @@ from azure.storage.blob import BlobServiceClient
 
 DEFAULT_DOCS_INDEX = "ewa-docs"
 DEFAULT_CHUNKS_INDEX = "ewa-chunks"
-DEFAULT_ALERTS_INDEX = "ewa-alerts"
+DEFAULT_CHECK_OVERVIEW_INDEX = "ewa-check-overview"
 DEFAULT_CONTAINER = "ewa-uploads"
 BATCH_SIZE = 500
 
@@ -61,7 +61,7 @@ class ResetSummary:
     blobs_deleted: int = 0
     docs_deleted: int = 0
     chunks_deleted: int = 0
-    alerts_deleted: int = 0
+    checks_deleted: int = 0
 
 
 def _require_env(name: str) -> str:
@@ -144,7 +144,11 @@ def main() -> None:
     parser.add_argument("--container", default=DEFAULT_CONTAINER, help=f"Blob container name (default: {DEFAULT_CONTAINER})")
     parser.add_argument("--docs-index", default=os.getenv("INDEX_DOCS", DEFAULT_DOCS_INDEX))
     parser.add_argument("--chunks-index", default=os.getenv("INDEX_CHUNKS", DEFAULT_CHUNKS_INDEX))
-    parser.add_argument("--alerts-index", default=os.getenv("INDEX_ALERTS", DEFAULT_ALERTS_INDEX))
+    parser.add_argument(
+        "--alerts-index",
+        default=os.getenv("INDEX_CHECK_OVERVIEW", DEFAULT_CHECK_OVERVIEW_INDEX),
+        help="Check-overview index name (legacy flag name retained for compatibility).",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Show what would be deleted without deleting.")
     parser.add_argument("--confirm", action="store_true", help="Actually perform deletion.")
 
@@ -202,11 +206,11 @@ def main() -> None:
         confirm=confirm,
     )
 
-    summary.alerts_deleted = _delete_search_docs(
+    summary.checks_deleted = _delete_search_docs(
         endpoint=search_endpoint,
         api_key=search_api_key,
         index_name=args.alerts_index,
-        key_field="alert_id",
+        key_field="check_id",
         filter_expression=search_filter,
         confirm=confirm,
     )
@@ -215,7 +219,7 @@ def main() -> None:
     print(f"  blobs_deleted : {summary.blobs_deleted}")
     print(f"  docs_deleted  : {summary.docs_deleted}")
     print(f"  chunks_deleted: {summary.chunks_deleted}")
-    print(f"  alerts_deleted: {summary.alerts_deleted}")
+    print(f"  checks_deleted: {summary.checks_deleted}")
 
 
 if __name__ == "__main__":

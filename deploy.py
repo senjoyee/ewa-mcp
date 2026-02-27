@@ -3,7 +3,7 @@
 
 This script orchestrates the deployment of:
 1. Azure resources via Bicep (Search, OpenAI, Storage, Event Grid, Container Apps)
-2. Azure AI Search indexes (ewa-docs, ewa-chunks, ewa-alerts)
+2. Azure AI Search indexes (ewa-docs, ewa-chunks, ewa-check-overview)
 3. Azure Function (document processor)
 4. MCP Server (Container App)
 

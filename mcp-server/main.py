@@ -1,5 +1,6 @@
 """FastAPI MCP server with Streamable HTTP transport."""
 
+import asyncio
 import os
 import sys
 from contextlib import asynccontextmanager
@@ -9,11 +10,11 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from fastapi import FastAPI, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response, StreamingResponse
 
-from mcp_server.auth.api_key import APIKeyMiddleware
-from mcp_server.search.client import SearchClient
-from mcp_server.tools import (
+from auth.api_key import APIKeyMiddleware
+from search.client import SearchClient
+from tools import (
     list_reports,
     get_alert_overview,
     get_alert_detail,
@@ -84,9 +85,22 @@ async def health_check():
 @app.post("/mcp")
 async def mcp_endpoint(request: Request):
     """MCP Streamable HTTP JSON-RPC endpoint."""
-    body = await request.json()
+    try:
+        body = await request.json()
+    except Exception:
+        return {
+            "jsonrpc": "2.0",
+            "id": None,
+            "error": {"code": -32700, "message": "Parse error"},
+        }
+
     method = body.get("method")
     req_id = body.get("id")
+
+    # JSON-RPC notifications/responses (no id) must be accepted with 202.
+    # This is especially important for notifications/cancelled.
+    if req_id is None:
+        return Response(status_code=202)
 
     # ── initialize ──────────────────────────────────────────────────────────
     if method == "initialize":
@@ -124,13 +138,29 @@ async def mcp_endpoint(request: Request):
             }
 
         try:
-            result_text = await tool_module.execute(search_client, arguments)
+            timeout_seconds = int(os.environ.get("TOOL_TIMEOUT_SECONDS", "45"))
+            result_text = await asyncio.wait_for(
+                tool_module.execute(search_client, arguments),
+                timeout=timeout_seconds,
+            )
             return {
                 "jsonrpc": "2.0",
                 "id": req_id,
                 "result": {
                     "content": [{"type": "text", "text": result_text}],
                     "isError": False,
+                },
+            }
+        except asyncio.TimeoutError:
+            return {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "result": {
+                    "content": [{
+                        "type": "text",
+                        "text": '{"error": "Tool execution timed out"}',
+                    }],
+                    "isError": True,
                 },
             }
         except Exception as e:
@@ -158,6 +188,25 @@ async def mcp_sse():
         yield "event: endpoint\ndata: /mcp\n\n"
 
     return StreamingResponse(event_generator(), media_type="text/event-stream")
+
+
+@app.get("/mcp")
+async def mcp_stream(request: Request):
+    """SSE stream endpoint at /mcp for streamable HTTP compatibility."""
+
+    async def event_generator():
+        # Keep-alive comments allow clients/proxies to keep the SSE connection open.
+        while True:
+            if await request.is_disconnected():
+                break
+            yield ": keepalive\n\n"
+            await asyncio.sleep(15)
+
+    return StreamingResponse(
+        event_generator(),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "Connection": "keep-alive"},
+    )
 
 
 if __name__ == "__main__":

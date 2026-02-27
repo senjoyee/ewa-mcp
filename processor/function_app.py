@@ -175,8 +175,8 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
 
         indexer.index_document(document)
 
-        # Step 2: Extract alerts with Vision AI
-        logging.info("Step 2: Extracting alerts with Vision AI...")
+        # Step 2: Extract check overview rows with Vision AI
+        logging.info("Step 2: Extracting check overview rows with Vision AI...")
         if event_publisher:
             event_publisher.publish_stage(customer_id, doc_id, sid, file_name, "alert_extraction")
 
@@ -190,16 +190,16 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
                     sid,
                     document.environment,
                 )
-                alert_result = future.result(timeout=90)
+                alert_result = future.result(timeout=180)
 
-            alerts = alert_result.alerts
-            logging.info("Extracted %d alerts", len(alerts))
+            checks = alert_result.checks
+            logging.info("Extracted %d check overview rows", len(checks))
         except FuturesTimeoutError:
-            logging.error("Alert extraction timed out after 90s; continuing without alerts")
-            alerts = []
+            logging.error("Alert extraction timed out after 180s; continuing without check-overview rows")
+            checks = []
         except Exception as exc:
             logging.exception("Alert extraction failed, continuing without alerts: %s", exc)
-            alerts = []
+            checks = []
 
         # Step 3: Chunk markdown
         logging.info("Step 3: Chunking markdown...")
@@ -216,19 +216,41 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
         )
         logging.info("Created %d chunks", len(chunks))
 
-        # Step 4: Link alerts to evidence chunks
-        logging.info("Step 4: Linking alerts to evidence chunks...")
-        alerts = chunker.link_alerts_to_chunks(alerts, chunks)
-
-        # Step 5: Generate embeddings
-        logging.info("Step 5: Generating embeddings...")
+        # Step 4: Generate embeddings (chunks first)
+        logging.info("Step 4: Generating embeddings...")
         if event_publisher:
             event_publisher.publish_stage(customer_id, doc_id, sid, file_name, "embedding")
 
         chunk_texts = [c.content_md for c in chunks]
-        embeddings = embedder.embed_batch(chunk_texts)
-        for chunk, embedding in zip(chunks, embeddings):
+        chunk_embeddings = embedder.embed_batch(chunk_texts)
+        for chunk, embedding in zip(chunks, chunk_embeddings):
             chunk.content_vector = embedding
+
+        # Step 5: Link check overview rows to evidence chunks using semantic similarity
+        logging.info("Step 5: Linking check overview rows to evidence chunks (semantic similarity)...")
+
+        def _cosine(a, b):
+            denom_a = sum(x * x for x in a) ** 0.5
+            denom_b = sum(x * x for x in b) ** 0.5
+            if denom_a == 0 or denom_b == 0:
+                return 0.0
+            return sum(x * y for x, y in zip(a, b)) / (denom_a * denom_b)
+
+        check_texts = [
+            f"{c.topic_name or ''}. {c.subtopic_name or ''}. {c.description or ''} {c.recommendation or ''}"
+            for c in checks
+        ]
+        check_embeddings = embedder.embed_batch(check_texts) if checks else []
+
+        for check, check_vec in zip(checks, check_embeddings):
+            scored = []
+            for chunk in chunks:
+                if not chunk.content_vector:
+                    continue
+                score = _cosine(check_vec, chunk.content_vector)
+                scored.append((score, chunk.chunk_id))
+            scored.sort(key=lambda t: t[0], reverse=True)
+            check.evidence_chunk_ids = [cid for _, cid in scored[:5]]
 
         # Step 6: Index to Azure AI Search
         logging.info("Step 6: Indexing to Azure AI Search...")
@@ -236,19 +258,19 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             event_publisher.publish_stage(customer_id, doc_id, sid, file_name, "indexing")
 
         indexer.index_chunks(chunks)
-        indexer.index_alerts(alerts)
-        indexer.update_document_status(doc_id, "completed", len(alerts))
+        indexer.index_checks(checks)
+        indexer.update_document_status(doc_id, "completed", len(checks))
 
         if event_publisher:
             event_publisher.publish_completed(
                 customer_id, doc_id, sid, file_name,
-                alert_count=len(alerts),
+                alert_count=len(checks),
                 chunk_count=len(chunks),
             )
 
         logging.info(
-            "Successfully processed %s: %d alerts, %d chunks",
-            file_name, len(alerts), len(chunks),
+            "Successfully processed %s: %d check-overview rows, %d chunks",
+            file_name, len(checks), len(chunks),
         )
 
     except Exception as exc:

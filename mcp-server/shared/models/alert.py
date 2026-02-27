@@ -60,20 +60,61 @@ class CheckOverviewRow(BaseModel):
     description: Optional[str] = Field(None, description="Optional visible description text")
     recommendation: Optional[str] = Field(None, description="Optional visible recommendation text")
 
+    @property
+    def alert_id(self) -> str:
+        """Backward-compatible alias for check ID."""
+        return self.check_id
 
-# Backward compatibility alias used across current pipeline/tooling imports.
+    @property
+    def title(self) -> str:
+        """Derived display title for legacy alert-centric tool payloads."""
+        if self.subtopic_name:
+            return self.subtopic_name
+        return self.topic_name
+
+    @property
+    def severity(self) -> Severity:
+        """Backward-compatible severity from priority bucket."""
+        bucket = (self.priority_bucket or "unknown").lower()
+        try:
+            return Severity(bucket)
+        except ValueError:
+            return Severity.UNKNOWN
+
+    @property
+    def category(self) -> Category:
+        """Backward-compatible category projection (coarse)."""
+        text = (self.topic_name or "").lower()
+        if "security" in text:
+            return Category.SECURITY
+        if "performance" in text:
+            return Category.PERFORMANCE
+        if "stability" in text:
+            return Category.STABILITY
+        if "configuration" in text:
+            return Category.CONFIGURATION
+        if "lifecycle" in text or "maintenance" in text or "upgrade" in text:
+            return Category.LIFECYCLE
+        if "database" in text or "hana" in text:
+            return Category.DATABASE
+        if "bw" in text:
+            return Category.BW
+        return Category.UNKNOWN
+
+    @property
+    def section_path(self) -> str:
+        """Backward-compatible section path."""
+        if self.reference_section:
+            return self.reference_section
+        if self.subtopic_name:
+            return f"{self.topic_name} / {self.subtopic_name}"
+        return self.topic_name
+
+    @property
+    def tags(self) -> List[str]:
+        """Backward-compatible tags list."""
+        return []
+
+
 class Alert(CheckOverviewRow):
-    """Compatibility alias for existing Alert references."""
-
-
-class CheckOverviewExtractionResult(BaseModel):
-    """Result from check overview extraction."""
-
-    checks: List[CheckOverviewRow]
-    pages_processed: int
-    extraction_confidence: Optional[float] = None
-
-
-# Backward compatibility alias used across current pipeline/tooling imports.
-class AlertExtractionResult(CheckOverviewExtractionResult):
-    """Compatibility alias for existing AlertExtractionResult references."""
+    """Backward-compatible alias for tools still named around alerts."""

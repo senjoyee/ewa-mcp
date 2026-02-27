@@ -13,7 +13,7 @@ from azure.search.documents.models import (
 )
 
 from shared.models.document import Document
-from shared.models.alert import Alert, Severity, Category
+from shared.models.alert import Alert, CheckOverviewRow, Severity, Category
 from shared.models.chunk import Chunk
 
 
@@ -32,7 +32,7 @@ class SearchClient:
         
         self.docs_index = os.environ.get("INDEX_DOCS", "ewa-docs")
         self.chunks_index = os.environ.get("INDEX_CHUNKS", "ewa-chunks")
-        self.alerts_index = os.environ.get("INDEX_ALERTS", "ewa-alerts")
+        self.check_overview_index = os.environ.get("INDEX_CHECK_OVERVIEW", "ewa-check-overview")
     
     def _get_client(self, index_name: str) -> AzureSearchClient:
         """Get search client for index."""
@@ -56,6 +56,8 @@ class SearchClient:
             filters.append(f"report_date le {kwargs['date_to']}T00:00:00Z")
         if kwargs.get("severity"):
             filters.append(f"severity eq '{kwargs['severity']}'")
+        if kwargs.get("priority_bucket"):
+            filters.append(f"priority_bucket eq '{kwargs['priority_bucket']}'")
         if kwargs.get("category"):
             filters.append(f"category eq '{kwargs['category']}'")
         if kwargs.get("section_path"):
@@ -94,37 +96,52 @@ class SearchClient:
         
         return documents
     
-    async def get_alerts(
+    async def get_checks(
         self,
         customer_id: str,
         doc_id: str,
-        severity: Optional[str] = None,
-        category: Optional[str] = None
-    ) -> List[Alert]:
-        """Get alerts for a document."""
-        client = self._get_client(self.alerts_index)
+        priority_bucket: Optional[str] = None,
+        row_type: Optional[str] = None,
+    ) -> List[CheckOverviewRow]:
+        """Get check overview rows for a document."""
+        client = self._get_client(self.check_overview_index)
         
         filter_str = self._build_filter(
-            customer_id, doc_id=doc_id, severity=severity, category=category
+            customer_id,
+            doc_id=doc_id,
+            priority_bucket=priority_bucket,
         )
+        if row_type:
+            filter_str = f"{filter_str} and row_type eq '{row_type}'"
         
         results = client.search(
             search_text="*",
             filter=filter_str
         )
         
-        alerts = []
+        checks = []
         for r in results:
-            alert = self._dict_to_alert(r)
-            alerts.append(alert)
+            check = self._dict_to_check(r)
+            checks.append(check)
         
-        return alerts
+        return checks
+
+    async def get_alerts(
+        self,
+        customer_id: str,
+        doc_id: str,
+        severity: Optional[str] = None,
+        category: Optional[str] = None,
+    ) -> List[CheckOverviewRow]:
+        """Backward-compatible alias for older tool code paths."""
+        _ = category
+        return await self.get_checks(customer_id, doc_id, priority_bucket=severity)
     
-    async def get_alert(self, customer_id: str, doc_id: str, alert_id: str) -> Optional[Alert]:
-        """Get single alert by ID."""
-        client = self._get_client(self.alerts_index)
+    async def get_check(self, customer_id: str, doc_id: str, check_id: str) -> Optional[CheckOverviewRow]:
+        """Get single check row by ID."""
+        client = self._get_client(self.check_overview_index)
         
-        filter_str = f"customer_id eq '{customer_id}' and doc_id eq '{doc_id}' and alert_id eq '{alert_id}'"
+        filter_str = f"customer_id eq '{customer_id}' and doc_id eq '{doc_id}' and check_id eq '{check_id}'"
         
         results = client.search(
             search_text="*",
@@ -133,9 +150,13 @@ class SearchClient:
         )
         
         for r in results:
-            return self._dict_to_alert(r)
+            return self._dict_to_check(r)
         
         return None
+
+    async def get_alert(self, customer_id: str, doc_id: str, alert_id: str) -> Optional[CheckOverviewRow]:
+        """Backward-compatible alias for older tool code paths."""
+        return await self.get_check(customer_id, doc_id, alert_id)
     
     async def get_chunks(
         self,
@@ -268,27 +289,33 @@ class SearchClient:
             alert_count=d.get("alert_count")
         )
     
-    def _dict_to_alert(self, d: Dict) -> Alert:
-        """Convert search result to Alert."""
-        return Alert(
-            alert_id=d.get("alert_id", ""),
+    def _dict_to_check(self, d: Dict) -> CheckOverviewRow:
+        """Convert search result to CheckOverviewRow."""
+        return CheckOverviewRow(
+            check_id=d.get("check_id", ""),
             customer_id=d.get("customer_id", ""),
             doc_id=d.get("doc_id", ""),
             sid=d.get("sid", ""),
             environment=d.get("environment"),
             report_date=self._parse_datetime(d.get("report_date")),
-            title=d.get("title", ""),
-            severity=Severity(d.get("severity", "unknown")),
-            category=Category(d.get("category", "unknown")),
-            section_path=d.get("section_path", ""),
+            row_type=d.get("row_type", "subtopic"),
+            topic_name=d.get("topic_name", ""),
+            subtopic_name=d.get("subtopic_name"),
+            topic_rating_raw=d.get("topic_rating_raw"),
+            subtopic_rating_raw=d.get("subtopic_rating_raw"),
+            topic_rating_normalized=d.get("topic_rating_normalized"),
+            subtopic_rating_normalized=d.get("subtopic_rating_normalized"),
+            priority_bucket=d.get("priority_bucket"),
+            reference_page=d.get("reference_page"),
+            reference_section=d.get("reference_section"),
             page_start=d.get("page_start", 1),
             page_end=d.get("page_end", 1),
             page_range=d.get("page_range", "1"),
+            source_page=d.get("source_page"),
             evidence_chunk_ids=d.get("evidence_chunk_ids", []),
             sap_note_ids=d.get("sap_note_ids", []),
-            tags=d.get("tags", []),
             description=d.get("description"),
-            recommendation=d.get("recommendation")
+            recommendation=d.get("recommendation"),
         )
     
     def _dict_to_chunk(self, d: Dict) -> Chunk:

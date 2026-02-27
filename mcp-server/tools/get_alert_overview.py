@@ -1,4 +1,4 @@
-"""get_alert_overview tool - Get all alerts from a report."""
+"""get_alert_overview tool - Get all check-overview rows from a report."""
 
 import json
 from typing import TYPE_CHECKING
@@ -12,7 +12,7 @@ def get_tool_definition() -> Tool:
     """Get tool definition."""
     return Tool(
         name="get_alert_overview",
-        description="Get overview of all alerts in a specific EWA report",
+        description="Get overview of all check-overview rows in a specific EWA report",
         inputSchema={
             "type": "object",
             "additionalProperties": False,
@@ -31,7 +31,7 @@ def get_tool_definition() -> Tool:
                 "include_info": {
                     "type": "boolean",
                     "default": True,
-                    "description": "Include info-level alerts"
+                    "description": "Include info-level priority rows"
                 }
             }
         }
@@ -44,7 +44,7 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
     doc_id = arguments["doc_id"]
     include_info = arguments.get("include_info", True)
     
-    # Get all alerts for the document
+    # Get all check-overview rows for the document
     alerts = await search_client.get_alerts(
         customer_id=customer_id,
         doc_id=doc_id
@@ -81,10 +81,15 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
     # Build alert list with citations
     for alert in alerts:
         alert_info = {
+            "check_id": alert.check_id,
             "alert_id": alert.alert_id,
             "title": alert.title,
             "severity": alert.severity.value,
             "category": alert.category.value,
+            "row_type": alert.row_type,
+            "topic_name": alert.topic_name,
+            "subtopic_name": alert.subtopic_name,
+            "priority_bucket": alert.priority_bucket,
             "page_range": alert.page_range,
             "section_path": alert.section_path,
             "sap_note_ids": alert.sap_note_ids,

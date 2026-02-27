@@ -1,4 +1,4 @@
-"""Azure AI Search indexer for documents, chunks, and alerts."""
+"""Azure AI Search indexer for documents, chunks, and check overview rows."""
 
 from typing import List, Dict, Any
 from azure.core.credentials import AzureKeyCredential
@@ -7,11 +7,11 @@ from azure.search.documents.indexes import SearchIndexClient
 
 from models.document import Document
 from models.chunk import Chunk
-from models.alert import Alert
+from models.alert import CheckOverviewRow
 
 
 class SearchIndexer:
-    """Index documents, chunks, and alerts to Azure AI Search."""
+    """Index documents, chunks, and check overview rows to Azure AI Search."""
     
     def __init__(self, endpoint: str, api_key: str):
         """Initialize indexer.
@@ -26,7 +26,7 @@ class SearchIndexer:
         # Index names
         self.docs_index = "ewa-docs"
         self.chunks_index = "ewa-chunks"
-        self.alerts_index = "ewa-alerts"
+        self.checks_index = "ewa-check-overview"
     
     def _get_search_client(self, index_name: str) -> SearchClient:
         """Get search client for index."""
@@ -83,27 +83,27 @@ class SearchIndexer:
             print(f"Error indexing chunks: {e}")
             return False
     
-    def index_alerts(self, alerts: List[Alert]) -> bool:
-        """Index alerts.
+    def index_checks(self, checks: List[CheckOverviewRow]) -> bool:
+        """Index check overview rows.
         
         Args:
-            alerts: List of Alert models
+            checks: List of CheckOverviewRow models
             
         Returns:
             True if successful
         """
-        if not alerts:
+        if not checks:
             return True
         
-        client = self._get_search_client(self.alerts_index)
+        client = self._get_search_client(self.checks_index)
         
-        alert_dicts = [self._alert_to_dict(a) for a in alerts]
+        check_dicts = [self._check_to_dict(c) for c in checks]
         
         try:
-            client.upload_documents(documents=alert_dicts)
+            client.upload_documents(documents=check_dicts)
             return True
         except Exception as e:
-            print(f"Error indexing alerts: {e}")
+            print(f"Error indexing check overview rows: {e}")
             return False
     
     def update_document_status(self, doc_id: str, status: str, alert_count: int = None) -> bool:
@@ -175,25 +175,31 @@ class SearchIndexer:
         
         return result
     
-    def _alert_to_dict(self, alert: Alert) -> Dict[str, Any]:
-        """Convert Alert model to search document dict."""
+    def _check_to_dict(self, check: CheckOverviewRow) -> Dict[str, Any]:
+        """Convert CheckOverviewRow model to search document dict."""
         return {
-            "alert_id": alert.alert_id,
-            "customer_id": alert.customer_id,
-            "doc_id": alert.doc_id,
-            "sid": alert.sid,
-            "environment": alert.environment,
-            "report_date": alert.report_date.isoformat() if alert.report_date else None,
-            "title": alert.title,
-            "severity": alert.severity.value,
-            "category": alert.category.value,
-            "section_path": alert.section_path,
-            "page_start": alert.page_start,
-            "page_end": alert.page_end,
-            "page_range": alert.page_range,
-            "evidence_chunk_ids": alert.evidence_chunk_ids,
-            "sap_note_ids": alert.sap_note_ids,
-            "tags": alert.tags,
-            "description": alert.description,
-            "recommendation": alert.recommendation
+            "check_id": check.check_id,
+            "customer_id": check.customer_id,
+            "doc_id": check.doc_id,
+            "sid": check.sid,
+            "environment": check.environment,
+            "report_date": check.report_date.isoformat() if check.report_date else None,
+            "row_type": check.row_type,
+            "topic_name": check.topic_name,
+            "subtopic_name": check.subtopic_name,
+            "topic_rating_raw": check.topic_rating_raw,
+            "subtopic_rating_raw": check.subtopic_rating_raw,
+            "topic_rating_normalized": check.topic_rating_normalized,
+            "subtopic_rating_normalized": check.subtopic_rating_normalized,
+            "priority_bucket": check.priority_bucket,
+            "reference_page": check.reference_page,
+            "reference_section": check.reference_section,
+            "page_start": check.page_start,
+            "page_end": check.page_end,
+            "page_range": check.page_range,
+            "source_page": check.source_page,
+            "sap_note_ids": check.sap_note_ids,
+            "evidence_chunk_ids": check.evidence_chunk_ids,
+            "description": check.description,
+            "recommendation": check.recommendation,
         }

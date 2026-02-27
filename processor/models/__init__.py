@@ -1,5 +1,12 @@
 from .document import Document, ProcessingEvent
-from .alert import Alert, AlertExtractionResult, Severity, Category
+from .alert import (
+    Alert,
+    AlertExtractionResult,
+    CheckOverviewRow,
+    CheckOverviewExtractionResult,
+    Severity,
+    Category,
+)
 from .chunk import Chunk, ChunkSearchResult
 
 __all__ = [
@@ -7,6 +14,8 @@ __all__ = [
     "ProcessingEvent",
     "Alert",
     "AlertExtractionResult",
+    "CheckOverviewRow",
+    "CheckOverviewExtractionResult",
     "Severity",
     "Category",
     "Chunk",

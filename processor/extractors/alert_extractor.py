@@ -1,15 +1,14 @@
-"""GPT-5.2 Vision alert extraction from EWA priority tables via Azure AI Foundry."""
+"""GPT-5.2 Vision check overview extraction from EWA summary tables."""
 
 import base64
 import json
 import logging
 import re
 from typing import Any, Dict, List
-from datetime import datetime
 import openai
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from models.alert import Alert, AlertExtractionResult, Severity, Category
+from models.alert import CheckOverviewRow, CheckOverviewExtractionResult
 
 
 logger = logging.getLogger(__name__)
@@ -84,48 +83,57 @@ def _parse_page_bounds(page_range: str, default_page: int) -> tuple[int, int]:
     return start, end
 
 
-ALERT_EXTRACTION_SCHEMA: Dict[str, Any] = {
+CHECK_OVERVIEW_EXTRACTION_SCHEMA: Dict[str, Any] = {
     "type": "object",
     "properties": {
-        "alerts": {
+        "checks": {
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
-                    "title": {"type": "string"},
-                    "severity": {
+                    "row_type": {
                         "type": "string",
-                        "enum": ["very_high", "high", "medium", "low", "info", "unknown"],
+                        "enum": ["topic", "subtopic"],
                     },
-                    "category": {
-                        "type": "string",
-                        "enum": [
-                            "security",
-                            "performance",
-                            "stability",
-                            "configuration",
-                            "lifecycle",
-                            "data_volume",
-                            "database",
-                            "bw",
-                            "other",
-                            "unknown",
-                        ],
+                    "topic_name": {"type": "string"},
+                    "subtopic_name": {"type": ["string", "null"]},
+                    "topic_rating_raw": {"type": ["string", "null"]},
+                    "subtopic_rating_raw": {"type": ["string", "null"]},
+                    "topic_rating_normalized": {
+                        "type": ["string", "null"],
+                        "enum": ["red", "yellow", "green", "grey", "unknown", None],
+                    },
+                    "subtopic_rating_normalized": {
+                        "type": ["string", "null"],
+                        "enum": ["red", "yellow", "green", "grey", "unknown", None],
+                    },
+                    "priority_bucket": {
+                        "type": ["string", "null"],
+                        "enum": ["very_high", "high", "medium", "low", "info", "unknown", None],
                     },
                     "sap_note_ids": {
                         "type": "array",
                         "items": {"type": "string"},
                     },
-                    "page_range": {"type": "string"},
+                    "reference_page": {"type": ["string", "null"], "description": "Page number pointing to the detailed evidence/section"},
+                    "reference_section": {"type": ["string", "null"], "description": "Section number (e.g., 3.1.2) if present in the table"},
+                    "source_page": {"type": ["integer", "null"]},
                     "description": {"type": ["string", "null"]},
                     "recommendation": {"type": ["string", "null"]},
                 },
                 "required": [
-                    "title",
-                    "severity",
-                    "category",
+                    "row_type",
+                    "topic_name",
+                    "subtopic_name",
+                    "topic_rating_raw",
+                    "subtopic_rating_raw",
+                    "topic_rating_normalized",
+                    "subtopic_rating_normalized",
+                    "priority_bucket",
                     "sap_note_ids",
-                    "page_range",
+                    "reference_page",
+                    "reference_section",
+                    "source_page",
                     "description",
                     "recommendation",
                 ],
@@ -135,54 +143,33 @@ ALERT_EXTRACTION_SCHEMA: Dict[str, Any] = {
         "pages_processed": {"type": "integer"},
         "extraction_confidence": {"type": "number"},
     },
-    "required": ["alerts", "pages_processed", "extraction_confidence"],
+    "required": ["checks", "pages_processed", "extraction_confidence"],
     "additionalProperties": False,
 }
 
 
-ALERT_EXTRACTION_PROMPT = """You are analyzing SAP EarlyWatch Alert priority table images. 
-Extract ALL alerts visible in these images and return them as a JSON array.
+CHECK_OVERVIEW_EXTRACTION_PROMPT = """You are analyzing SAP EarlyWatch Alert Check Overview table images.
+Extract EVERY visible row from the check overview table and return JSON.
 
-For each alert, extract:
-- title: The alert name/description (e.g., "Database Growth", "Security Patch Missing")
-- severity: One of [very_high, high, medium, low, info] based on the priority section (Very High Priority = very_high, etc.)
-- category: One of [security, performance, stability, configuration, lifecycle, data_volume, database, bw, other]
-  - security: Security patches, vulnerabilities, audit issues
-  - performance: Response time, throughput, resource utilization
-  - stability: System crashes, dumps, errors
-  - configuration: Parameter settings, profile recommendations
-  - lifecycle: Support package levels, end-of-life notices
-  - data_volume: Database size, table growth, archiving
-  - database: DB-specific issues (Oracle, HANA, SQL Server)
-  - bw: Business Warehouse specific
-  - other: Anything not matching above
-- sap_note_ids: Array of SAP note numbers mentioned (e.g., ["1234567", "2345678"])
-- page_range: The page number where this alert appears (from image context)
-- description: Full alert text/description if available
-- recommendation: Recommended action if visible
+Use this row mapping:
+- row_type: "topic" when Topic column has a value and Subtopic is blank/group; "subtopic" for concrete checks under a topic.
+- topic_name: value in Topic column.
+- subtopic_name: value in Subtopic column when present.
+- topic_rating_raw / subtopic_rating_raw: raw visible icon/text marker in corresponding rating column.
+- topic_rating_normalized / subtopic_rating_normalized: normalize to red|yellow|green|grey|unknown.
+- priority_bucket: map severity bucket when implied (very_high|high|medium|low|info|unknown), else unknown/null.
+- reference_page: page reference in the row pointing to detailed evidence (if visible).
+- reference_section: section reference like 3.1.2 if visible.
+- source_page: page number of the image where this row is read.
+- sap_note_ids: SAP note IDs visible in the row.
+- description/recommendation: include only if explicitly visible in the row.
 
-Output format:
-{
-  "alerts": [
-    {
-      "title": "string",
-      "severity": "very_high|high|medium|low|info",
-      "category": "security|performance|stability|configuration|lifecycle|data_volume|database|bw|other",
-      "sap_note_ids": ["1234567"],
-      "page_range": "1",
-      "description": "optional full text",
-      "recommendation": "optional action"
-    }
-  ],
-  "pages_processed": 4,
-  "extraction_confidence": 0.95
-}
-
-Be thorough - extract every single alert visible in the priority tables."""
+Do not infer missing values; use null/unknown where appropriate.
+Output all rows in reading order."""
 
 
 class VisionAlertExtractor:
-    """Extract alerts from EWA priority tables using GPT-5.2 via Azure AI Foundry."""
+    """Extract check overview rows from EWA summary tables via Azure AI Foundry."""
     
     def __init__(
         self,
@@ -203,7 +190,8 @@ class VisionAlertExtractor:
             base_url=endpoint.rstrip("/") + "/",
             timeout=request_timeout_seconds,
         )
-        self.deployment = deployment
+        # Hard lock to gpt-5.2 for vision extraction.
+        self.deployment = "gpt-5.2"
         self.request_timeout_seconds = request_timeout_seconds
     
     @retry(stop=stop_after_attempt(2), wait=wait_exponential(multiplier=1, min=2, max=4))
@@ -214,8 +202,8 @@ class VisionAlertExtractor:
         doc_id: str, 
         sid: str,
         environment: str = None
-    ) -> AlertExtractionResult:
-        """Extract alerts from priority page images.
+    ) -> CheckOverviewExtractionResult:
+        """Extract check overview rows from summary page images.
         
         Args:
             image_bytes_list: List of PNG image bytes for pages 1-4
@@ -225,96 +213,91 @@ class VisionAlertExtractor:
             environment: System environment
             
         Returns:
-            AlertExtractionResult with extracted alerts
+            CheckOverviewExtractionResult with extracted check-overview rows
         """
-        # Build content array with images for Chat Completions API
-        content = [{"type": "text", "text": ALERT_EXTRACTION_PROMPT}]
+        # Build content array for Responses API
+        content = [{"type": "input_text", "text": CHECK_OVERVIEW_EXTRACTION_PROMPT}]
 
         for idx, img_bytes in enumerate(image_bytes_list, start=1):
             base64_image = base64.b64encode(img_bytes).decode('utf-8')
             content.append({
-                "type": "image_url", 
-                "image_url": {"url": f"data:image/png;base64,{base64_image}"}
+                "type": "input_image",
+                "image_url": f"data:image/png;base64,{base64_image}",
             })
-            content.append({"type": "text", "text": f"[Page {idx}]"})
+            content.append({"type": "input_text", "text": f"[Page {idx}]"})
 
-        response_format = {
-            "type": "json_schema",
-            "json_schema": {
-                "name": "extract_ewa_alerts",
-                "schema": ALERT_EXTRACTION_SCHEMA,
-                "strict": True,
-            },
-        }
         text_format = {
-            "format": {
-                "type": "json_schema",
-                "name": "extract_ewa_alerts",
-                "schema": ALERT_EXTRACTION_SCHEMA,
-                "strict": True,
-            }
+            "type": "json_schema",
+            "name": "extract_ewa_check_overview",
+            "schema": CHECK_OVERVIEW_EXTRACTION_SCHEMA,
+            "strict": True,
         }
 
         try:
-            response = self.client.chat.completions.create(
+            response = self.client.responses.create(
                 model=self.deployment,
-                messages=[{"role": "user", "content": content}],
-                response_format=response_format,
-                extra_body={"max_completion_tokens": 4096},
+                input=[{"role": "user", "content": content}],
+                reasoning={"effort": "high"},
+                text={"format": text_format},
+                max_output_tokens=4096,
                 timeout=self.request_timeout_seconds,
             )
         except Exception as exc:
-            # If standard JSON schema format fails, try without structured outputs
-            if "response_format" in str(exc).lower() or "schema" in str(exc).lower():
-                logger.warning("Structured outputs failing, trying standard JSON mode: %s", exc)
-                response = self.client.chat.completions.create(
-                    model=self.deployment,
-                    messages=[{"role": "user", "content": content}],
-                    response_format={"type": "json_object"},
-                    extra_body={"max_completion_tokens": 4096},
-                    timeout=self.request_timeout_seconds,
-                )
-            else:
-                raise
-        
+            # If structured outputs fail, fall back to plain text output mode.
+            logger.warning("Structured outputs failing on Responses API, trying plain text: %s", exc)
+            response = self.client.responses.create(
+                model=self.deployment,
+                input=[{"role": "user", "content": content}],
+                reasoning={"effort": "high"},
+                max_output_tokens=4096,
+                timeout=self.request_timeout_seconds,
+            )
+
         result_json: Dict[str, Any] = {}
-        message = response.choices[0].message
-        
-        # In chat completions, standard models return strings via message.content
-        if message.content:
+        raw_text = getattr(response, "output_text", None) or _extract_text_from_response_output(getattr(response, "output", None))
+
+        if raw_text:
             try:
-                result_json = _parse_result_json(message.content)
+                result_json = _parse_result_json(raw_text)
             except ValueError as e:
                 logger.error("Failed to parse JSON from model output: %s", e)
-                result_json = {"alerts": [], "pages_processed": len(image_bytes_list), "extraction_confidence": 0.0}
+                result_json = {"checks": [], "pages_processed": len(image_bytes_list), "extraction_confidence": 0.0}
         
-        # Convert to Alert models
-        alerts = []
-        for idx, alert_data in enumerate(result_json.get("alerts", [])):
-            page_start, page_end = _parse_page_bounds(alert_data.get("page_range", "1"), default_page=1)
-            alert = Alert(
-                alert_id=f"{doc_id}_{idx}",
+        # Convert to CheckOverviewRow models
+        checks = []
+        for idx, check_data in enumerate(result_json.get("checks", [])):
+            ref_page = check_data.get("reference_page") or "1"
+            page_start, page_end = _parse_page_bounds(ref_page, default_page=1)
+            check = CheckOverviewRow(
+                check_id=f"{doc_id}_check_{idx:04d}",
                 customer_id=customer_id,
                 doc_id=doc_id,
                 sid=sid,
                 environment=environment,
-                title=alert_data.get("title", "Unknown Alert"),
-                severity=Severity(alert_data.get("severity", "unknown")),
-                category=Category(alert_data.get("category", "unknown")),
-                section_path=f"Priority/{alert_data.get('severity', 'unknown').replace('_', ' ').title()}",
+                row_type=check_data.get("row_type", "subtopic"),
+                topic_name=check_data.get("topic_name") or "unknown",
+                subtopic_name=check_data.get("subtopic_name"),
+                topic_rating_raw=check_data.get("topic_rating_raw"),
+                subtopic_rating_raw=check_data.get("subtopic_rating_raw"),
+                topic_rating_normalized=check_data.get("topic_rating_normalized"),
+                subtopic_rating_normalized=check_data.get("subtopic_rating_normalized"),
+                priority_bucket=check_data.get("priority_bucket"),
+                reference_page=check_data.get("reference_page"),
+                reference_section=check_data.get("reference_section"),
                 page_start=page_start,
                 page_end=page_end,
-                page_range=alert_data.get("page_range", "1"),
-                sap_note_ids=alert_data.get("sap_note_ids", []),
-                description=alert_data.get("description"),
-                recommendation=alert_data.get("recommendation")
+                page_range=ref_page,
+                source_page=check_data.get("source_page"),
+                sap_note_ids=check_data.get("sap_note_ids", []),
+                description=check_data.get("description"),
+                recommendation=check_data.get("recommendation")
             )
-            alerts.append(alert)
+            checks.append(check)
 
-        logger.info("Vision extraction produced %d alerts", len(alerts))
+        logger.info("Vision extraction produced %d check overview rows", len(checks))
         
-        return AlertExtractionResult(
-            alerts=alerts,
+        return CheckOverviewExtractionResult(
+            checks=checks,
             pages_processed=result_json.get("pages_processed", len(image_bytes_list)),
             extraction_confidence=result_json.get("extraction_confidence")
         )
