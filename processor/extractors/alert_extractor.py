@@ -239,7 +239,7 @@ class VisionAlertExtractor:
                 input=[{"role": "user", "content": content}],
                 reasoning={"effort": "high"},
                 text={"format": text_format},
-                max_output_tokens=4096,
+                max_output_tokens=16384,
                 timeout=self.request_timeout_seconds,
             )
         except Exception as exc:
@@ -249,7 +249,7 @@ class VisionAlertExtractor:
                 model=self.deployment,
                 input=[{"role": "user", "content": content}],
                 reasoning={"effort": "high"},
-                max_output_tokens=4096,
+                max_output_tokens=16384,
                 timeout=self.request_timeout_seconds,
             )
 
@@ -261,6 +261,7 @@ class VisionAlertExtractor:
                 result_json = _parse_result_json(raw_text)
             except ValueError as e:
                 logger.error("Failed to parse JSON from model output: %s", e)
+                logger.error("Raw text was: %s", repr(raw_text))
                 result_json = {"checks": [], "pages_processed": len(image_bytes_list), "extraction_confidence": 0.0}
         
         # Convert to CheckOverviewRow models

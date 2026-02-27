@@ -53,7 +53,8 @@ def _parse_blob_path(blob_url: str) -> tuple[str, str, str]:
 
 
 @app.route(route="process_ewa_blob", methods=["POST"], auth_level=func.AuthLevel.FUNCTION)
-def process_ewa_blob(req: func.HttpRequest) -> func.HttpResponse:
+@app.queue_output(arg_name="msg", queue_name="ewa-blob-queue", connection="BLOB_CONNECTION_STRING")
+def process_ewa_blob(req: func.HttpRequest, msg: func.Out[str]) -> func.HttpResponse:
     """HTTP-triggered handler for Event Grid BlobCreated events.
 
     Azure Event Grid delivers events as a JSON array.  Each item in
@@ -62,7 +63,7 @@ def process_ewa_blob(req: func.HttpRequest) -> func.HttpResponse:
     - Microsoft.EventGrid.SubscriptionValidationEvent
         → return {'validationResponse': <code>}
     - Microsoft.Storage.BlobCreated
-        → download & process the blob
+        → push the blob URL to the processing queue and return 200 OK immediately
     """
     try:
         body = req.get_json()
@@ -73,6 +74,8 @@ def process_ewa_blob(req: func.HttpRequest) -> func.HttpResponse:
     # Event Grid sends a *list* of events
     events = body if isinstance(body, list) else [body]
 
+    queue_messages = []
+    
     for event in events:
         event_type = event.get("eventType", "")
 
@@ -95,19 +98,39 @@ def process_ewa_blob(req: func.HttpRequest) -> func.HttpResponse:
                 container_name, customer_id, file_name = _parse_blob_path(blob_url)
             except ValueError as exc:
                 logging.error("Cannot parse blob path: %s", exc)
-                return func.HttpResponse(str(exc), status_code=400)
+                continue
 
             # Only process PDFs
             if not file_name.lower().endswith(".pdf"):
                 logging.info("Skipping non-PDF blob: %s", file_name)
-                return func.HttpResponse("Skipped – not a PDF", status_code=200)
+                continue
 
-            _run_pipeline(customer_id, file_name, blob_url)
-            return func.HttpResponse("OK", status_code=200)
+            queue_messages.append(json.dumps({
+                "blob_url": blob_url,
+                "customer_id": customer_id,
+                "file_name": file_name
+            }))
 
-        logging.warning("Unhandled event type: %s", event_type)
+        else:
+            logging.warning("Unhandled event type: %s", event_type)
+
+    if queue_messages:
+        # For multiple events, we can join them or just set them. 
+        # python function queue output binding supports setting a list of strings
+        msg.set(queue_messages if len(queue_messages) > 1 else queue_messages[0])
 
     return func.HttpResponse("OK", status_code=200)
+
+@app.queue_trigger(arg_name="queueMsg", queue_name="ewa-blob-queue", connection="BLOB_CONNECTION_STRING")
+def process_ewa_queue(queueMsg: func.QueueMessage) -> None:
+    """Queue-triggered background processor to avoid Event Grid 30-sec timeout."""
+    try:
+        body_str = queueMsg.get_body().decode('utf-8')
+        data = json.loads(body_str)
+        _run_pipeline(data["customer_id"], data["file_name"], data["blob_url"])
+    except Exception as exc:
+        logging.error("Failed to process queue message: %s", exc)
+        raise
 
 
 def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
