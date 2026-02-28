@@ -142,7 +142,10 @@ class SearchIndexer:
             "file_name": doc.file_name,
             "pages": doc.pages,
             "sha256": doc.sha256,
-            "alert_count": doc.alert_count
+            "product": doc.product,
+            "db_system": doc.db_system,
+            "installation_no": doc.installation_no,
+            "alert_count": doc.alert_count,
         }
     
     def _chunk_to_dict(self, chunk: Chunk) -> Dict[str, Any]:

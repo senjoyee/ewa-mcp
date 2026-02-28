@@ -17,7 +17,9 @@ class Document(BaseModel):
     file_name: str = Field(..., description="Original filename")
     pages: int = Field(default=0, description="Number of pages")
     sha256: str = Field(..., description="File SHA256 hash")
-    sha256: str = Field(..., description="File SHA256 hash")
+    product: Optional[str] = Field(None, description="SAP Product Name")
+    db_system: Optional[str] = Field(None, description="Database System")
+    installation_no: Optional[str] = Field(None, description="SAP Installation Number")
     processing_status: str = Field(
         default="pending",
         description="Processing status: pending/extracting/chunking/embedding/completed/failed",

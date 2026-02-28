@@ -29,8 +29,11 @@ def create_ewa_docs_index(client: SearchIndexClient):
     """Create ewa-docs index for report metadata."""
     fields = [
         SimpleField(name="doc_id", type=SearchFieldDataType.String, key=True),
-        SimpleField(name="customer_id", type=SearchFieldDataType.String, filterable=True),
+        SimpleField(name="customer_id", type=SearchFieldDataType.String, filterable=True, facetable=True),
         SimpleField(name="sid", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SearchableField(name="product", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SearchableField(name="db_system", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SimpleField(name="installation_no", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="analysis_from", type=SearchFieldDataType.DateTimeOffset, filterable=True),
         SimpleField(name="analysis_to", type=SearchFieldDataType.DateTimeOffset, filterable=True),
         SearchableField(name="title", type=SearchFieldDataType.String),

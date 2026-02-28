@@ -36,11 +36,15 @@ class PDFExtractor:
         # Extract metadata
         pages = len(doc)
         doc_id = f"{customer_id}_{sha256_hash[:16]}"
-        first_page_text = doc[0].get_text() if pages > 0 else ""
+        first_page_text = doc[0].get_text("text", sort=True) if pages > 0 else ""
         
         # Extract deterministic cover-page metadata
-        sid = self._extract_sid(first_page_text)
+        sid = self._extract_field(first_page_text, r"SAP System ID\s+([A-Z0-9]{3})", default="UNKNOWN")
         analysis_from, analysis_to = self._extract_analysis_window(first_page_text)
+        
+        product = self._extract_field(first_page_text, r"Product\s+(.+)$")
+        db_system = self._extract_field(first_page_text, r"DB System\s+(.+)$")
+        installation_no = self._extract_field(first_page_text, r"Installation No\.\s+(\d+)")
         
         # Create document model
         document = Document(
@@ -52,6 +56,9 @@ class PDFExtractor:
             file_name=file_name,
             pages=pages,
             sha256=sha256_hash,
+            product=product,
+            db_system=db_system,
+            installation_no=installation_no,
             processing_status="extracting"
         )
         
@@ -73,52 +80,27 @@ class PDFExtractor:
         
         return document, markdown_text, priority_images
     
-    def _extract_sid(self, first_page_text: str) -> str:
-        """Extract SAP SID from page-1 label/value pairs only.
-
-        This intentionally avoids permissive filename-based guessing to prevent hallucinated values.
-        """
-        text = (first_page_text or "").upper()
-        if not text:
-            return "UNKNOWN"
-
-        sid_patterns = [
-            r"\bSID\b\s*[:\-]?\s*([A-Z0-9]{3})\b",
-            r"\bSYSTEM\s+ID\b\s*[:\-]?\s*([A-Z0-9]{3})\b",
-            r"\bSYSTEM\b\s*[:\-]?\s*([A-Z0-9]{3})\b",
-        ]
-
-        for pattern in sid_patterns:
-            match = re.search(pattern, text, re.IGNORECASE)
-            if match:
-                return match.group(1).upper()
-
-        return "UNKNOWN"
+    def _extract_field(self, first_page_text: str, pattern: str, default: str = None) -> str | None:
+        """Extract a field using regex from page-1 text."""
+        text = (first_page_text or "")
+        match = re.search(pattern, text, re.MULTILINE)
+        if match:
+            return match.group(1).strip()
+        return default
 
     def _extract_analysis_window(self, first_page_text: str) -> Tuple[datetime | None, datetime | None]:
-        """Extract analysis period start/end dates from page 1 text."""
+        """Extract analysis period start/end dates from page 1 text using `sort=True` layout."""
         text = (first_page_text or "")
         if not text:
             return None, None
-
-        # Common EWA/cover-page variants.
-        patterns = [
-            r"analysis\s*(?:period)?\s*[:\-]?\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})\s*(?:to|\-|–|—)\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})",
-            r"analysis\s*from\s*[:\-]?\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4}).{0,30}?analysis\s*(?:to|until)\s*[:\-]?\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})",
-            r"from\s*[:\-]?\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})\s*(?:to|\-|–|—)\s*(\d{1,2}[./-]\d{1,2}[./-]\d{2,4})",
-        ]
-
-        for pattern in patterns:
-            match = re.search(pattern, text, re.IGNORECASE | re.DOTALL)
-            if not match:
-                continue
-
-            start = self._parse_date(match.group(1))
-            end = self._parse_date(match.group(2))
-            if start and end:
-                return start, end
-
-        return None, None
+            
+        start_match = re.search(r"Analysis from\s+(\d{2}\.\d{2}\.\d{4})", text, re.MULTILINE)
+        end_match = re.search(r"Until\s+(\d{2}\.\d{2}\.\d{4})", text, re.MULTILINE)
+        
+        start = self._parse_date(start_match.group(1)) if start_match else None
+        end = self._parse_date(end_match.group(1)) if end_match else None
+        
+        return start, end
 
     @staticmethod
     def _parse_date(raw: str) -> datetime | None:

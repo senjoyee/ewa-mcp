@@ -282,6 +282,9 @@ class SearchClient:
             file_name=d.get("file_name", ""),
             pages=d.get("pages", 0),
             sha256=d.get("sha256", ""),
+            product=d.get("product"),
+            db_system=d.get("db_system"),
+            installation_no=d.get("installation_no"),
             alert_count=d.get("alert_count"),
         )
     
