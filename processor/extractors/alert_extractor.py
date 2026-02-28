@@ -183,8 +183,7 @@ class VisionAlertExtractor:
         image_bytes_list: List[bytes], 
         customer_id: str, 
         doc_id: str, 
-        sid: str,
-        environment: str = None
+        sid: str
     ) -> CheckOverviewExtractionResult:
         """Extract check overview rows from summary page images.
         
@@ -193,7 +192,6 @@ class VisionAlertExtractor:
             customer_id: Customer tenant ID
             doc_id: Document ID
             sid: SAP System ID
-            environment: System environment
             
         Returns:
             CheckOverviewExtractionResult with extracted check-overview rows
@@ -257,7 +255,6 @@ class VisionAlertExtractor:
                 customer_id=customer_id,
                 doc_id=doc_id,
                 sid=sid,
-                environment=environment,
                 row_type=check_data.get("row_type", "subtopic"),
                 topic_name=check_data.get("topic_name") or "unknown",
                 subtopic_name=check_data.get("subtopic_name"),

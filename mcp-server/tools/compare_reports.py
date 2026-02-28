@@ -135,8 +135,6 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
                 "title": a.title,
                 "severity": a.severity.value,
                 "category": a.category.value,
-                "description": a.description,
-                "recommendation": a.recommendation,
                 "citation": {
                     "doc_id": a.doc_id,
                     "section_path": a.section_path,

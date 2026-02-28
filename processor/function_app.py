@@ -212,7 +212,6 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
                 customer_id,
                 doc_id,
                 sid,
-                document.environment,
             )
             alert_result = future.result(timeout=600)
             checks = alert_result.checks
@@ -236,8 +235,6 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             doc_id=doc_id,
             customer_id=customer_id,
             sid=sid,
-            environment=document.environment,
-            report_date=document.report_date,
         )
         logging.info("Created %d chunks", len(chunks))
 

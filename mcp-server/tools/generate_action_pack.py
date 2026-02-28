@@ -105,9 +105,6 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
             "category": alert.category.value,
             "page_range": alert.page_range,
             "section_path": alert.section_path,
-            "description": alert.description,
-            "recommendation": alert.recommendation,
-            "sap_note_ids": alert.sap_note_ids,
             "citation": {
                 "doc_id": alert.doc_id,
                 "section_path": alert.section_path,
@@ -182,16 +179,6 @@ def _format_as_markdown(action_pack: dict, alerts: List) -> str:
             f"**Location:** Page {alert_data['page_range']}, Section: {alert_data['section_path']}",
             ""
         ])
-        
-        if alert_data.get('description'):
-            lines.extend(["**Description:**", alert_data['description'], ""])
-        
-        if alert_data.get('recommendation'):
-            lines.extend(["**Recommended Action:**", alert_data['recommendation'], ""])
-        
-        if alert_data.get('sap_note_ids'):
-            lines.append(f"**SAP Notes:** {', '.join(alert_data['sap_note_ids'])}")
-            lines.append("")
         
         if alert_data.get('evidence'):
             lines.extend(["**Supporting Evidence:**", ""])

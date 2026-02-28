@@ -27,8 +27,6 @@ class MarkdownChunker:
         doc_id: str,
         customer_id: str,
         sid: str,
-        environment: str = None,
-        report_date: datetime = None,
         page_map: List[Tuple[int, int, str]] = None
     ) -> List[Chunk]:
         """Chunk markdown document by headers.
@@ -38,8 +36,6 @@ class MarkdownChunker:
             doc_id: Document ID
             customer_id: Customer tenant ID
             sid: SAP System ID
-            environment: System environment
-            report_date: Report generation date
             page_map: List of (start_char, end_char, page_num) for tracking pages
             
         Returns:
@@ -71,8 +67,6 @@ class MarkdownChunker:
                 doc_id=doc_id,
                 customer_id=customer_id,
                 sid=sid,
-                environment=environment,
-                report_date=report_date,
                 section_path=section_path,
                 page_start=page_start,
                 page_end=page_end,

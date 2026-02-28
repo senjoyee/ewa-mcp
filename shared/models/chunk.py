@@ -13,8 +13,6 @@ class Chunk(BaseModel):
     doc_id: str = Field(..., description="Parent document ID")
     customer_id: str = Field(..., description="Customer tenant ID")
     sid: str = Field(..., description="SAP System ID")
-    environment: Optional[str] = Field(None, description="System environment")
-    report_date: Optional[datetime] = Field(None, description="Report generation date")
     section_path: str = Field(..., description="Hierarchical section path")
     page_start: int = Field(..., description="Starting page")
     page_end: int = Field(..., description="Ending page")

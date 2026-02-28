@@ -39,8 +39,6 @@ class CheckOverviewRow(BaseModel):
     customer_id: str = Field(..., description="Customer tenant ID")
     doc_id: str = Field(..., description="Document/report ID")
     sid: str = Field(..., description="SAP System ID")
-    environment: Optional[str] = Field(None, description="System environment")
-    report_date: Optional[datetime] = Field(None, description="Report generation date")
     row_type: str = Field(..., description="topic|subtopic")
     topic_name: str = Field(..., description="Topic column value")
     subtopic_name: Optional[str] = Field(None, description="Subtopic column value")

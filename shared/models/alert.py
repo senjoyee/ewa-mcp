@@ -36,8 +36,6 @@ class Alert(BaseModel):
     customer_id: str = Field(..., description="Customer tenant ID")
     doc_id: str = Field(..., description="Document/report ID")
     sid: str = Field(..., description="SAP System ID")
-    environment: Optional[str] = Field(None, description="System environment")
-    report_date: Optional[datetime] = Field(None, description="Report generation date")
     title: str = Field(..., description="Alert title")
     severity: Severity = Field(default=Severity.UNKNOWN)
     category: Category = Field(default=Category.UNKNOWN)

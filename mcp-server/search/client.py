@@ -51,9 +51,9 @@ class SearchClient:
         if kwargs.get("doc_id"):
             filters.append(f"doc_id eq '{kwargs['doc_id']}'")
         if kwargs.get("date_from"):
-            filters.append(f"report_date ge {kwargs['date_from']}T00:00:00Z")
+            filters.append(f"analysis_to ge {kwargs['date_from']}T00:00:00Z")
         if kwargs.get("date_to"):
-            filters.append(f"report_date le {kwargs['date_to']}T00:00:00Z")
+            filters.append(f"analysis_to le {kwargs['date_to']}T00:00:00Z")
         if kwargs.get("severity"):
             filters.append(f"severity eq '{kwargs['severity']}'")
         if kwargs.get("priority_bucket"):
@@ -276,17 +276,13 @@ class SearchClient:
             doc_id=d.get("doc_id", ""),
             customer_id=d.get("customer_id", ""),
             sid=d.get("sid", ""),
-            environment=d.get("environment"),
-            report_date=self._parse_datetime(d.get("report_date")),
             analysis_from=self._parse_datetime(d.get("analysis_from")),
             analysis_to=self._parse_datetime(d.get("analysis_to")),
             title=d.get("title"),
             file_name=d.get("file_name", ""),
             pages=d.get("pages", 0),
             sha256=d.get("sha256", ""),
-            source_url=d.get("source_url"),
-            processing_status=d.get("processing_status", "unknown"),
-            alert_count=d.get("alert_count")
+            alert_count=d.get("alert_count"),
         )
     
     def _dict_to_check(self, d: Dict) -> CheckOverviewRow:
@@ -296,8 +292,6 @@ class SearchClient:
             customer_id=d.get("customer_id", ""),
             doc_id=d.get("doc_id", ""),
             sid=d.get("sid", ""),
-            environment=d.get("environment"),
-            report_date=self._parse_datetime(d.get("report_date")),
             row_type=d.get("row_type", "subtopic"),
             topic_name=d.get("topic_name", ""),
             subtopic_name=d.get("subtopic_name"),
@@ -323,8 +317,6 @@ class SearchClient:
             doc_id=d.get("doc_id", ""),
             customer_id=d.get("customer_id", ""),
             sid=d.get("sid", ""),
-            environment=d.get("environment"),
-            report_date=self._parse_datetime(d.get("report_date")),
             section_path=d.get("section_path", ""),
             page_start=d.get("page_start", 1),
             page_end=d.get("page_end", 1),

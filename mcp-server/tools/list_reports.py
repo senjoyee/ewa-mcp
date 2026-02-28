@@ -75,11 +75,10 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
         report_info = {
             "doc_id": r.doc_id,
             "sid": r.sid,
-            "environment": r.environment,
-            "report_date": r.report_date.isoformat() if r.report_date else None,
+            "analysis_from": r.analysis_from.isoformat() if r.analysis_from else None,
+            "analysis_to": r.analysis_to.isoformat() if r.analysis_to else None,
             "file_name": r.file_name,
             "pages": r.pages,
-            "processing_status": r.processing_status,
             "alert_count": r.alert_count
         }
         result["reports"].append(report_info)
