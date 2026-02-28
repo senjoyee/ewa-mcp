@@ -163,7 +163,7 @@ class SearchIndexer:
             "page_end": chunk.page_end,
             "severity": chunk.severity.value if chunk.severity else None,
             "category": chunk.category.value if chunk.category else None,
-            "sap_note_ids": chunk.sap_note_ids,
+            "sap_note_ids": chunk.sap_note_ids or [],
             "content_md": chunk.content_md,
             "parent_chunk_id": chunk.parent_chunk_id,
             "header_level": chunk.header_level
@@ -198,8 +198,8 @@ class SearchIndexer:
             "page_end": check.page_end,
             "page_range": check.page_range,
             "source_page": check.source_page,
-            "sap_note_ids": getattr(check, "sap_note_ids", None),
-            "evidence_chunk_ids": check.evidence_chunk_ids,
+            "sap_note_ids": getattr(check, "sap_note_ids", []),
+            "evidence_chunk_ids": check.evidence_chunk_ids or [],
             "description": getattr(check, "description", None),
             "recommendation": getattr(check, "recommendation", None),
         }
