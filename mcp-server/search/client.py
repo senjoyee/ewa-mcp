@@ -276,8 +276,8 @@ class SearchClient:
             doc_id=d.get("doc_id", ""),
             customer_id=d.get("customer_id", ""),
             sid=d.get("sid", ""),
-            analysis_from=self._parse_datetime(d.get("analysis_from")),
-            analysis_to=self._parse_datetime(d.get("analysis_to")),
+            analysis_from=self._parse_date(d.get("analysis_from")),
+            analysis_to=self._parse_date(d.get("analysis_to")),
             title=d.get("title"),
             file_name=d.get("file_name", ""),
             pages=d.get("pages", 0),
@@ -331,13 +331,14 @@ class SearchClient:
             header_level=d.get("header_level")
         )
     
-    def _parse_datetime(self, value) -> Optional[datetime]:
-        """Parse datetime from search result."""
-        if not value:
+    def _parse_date(self, date_str: str) -> Optional[date]:
+        """Parse ISO date string to date object."""
+        if not date_str:
             return None
-        if isinstance(value, datetime):
-            return value
         try:
-            return datetime.fromisoformat(value.replace('Z', '+00:00'))
-        except:
+            # Handle standard ISO dates
+            if 'T' in date_str:
+                return datetime.fromisoformat(date_str.replace('Z', '+00:00')).date()
+            return date.fromisoformat(date_str)
+        except (ValueError, TypeError):
             return None

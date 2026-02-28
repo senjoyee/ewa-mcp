@@ -1,6 +1,6 @@
 """Document metadata model."""
 
-from datetime import datetime
+from datetime import datetime, date
 from typing import Optional
 from pydantic import BaseModel, Field
 
@@ -10,8 +10,8 @@ class Document(BaseModel):
     doc_id: str = Field(..., description="Unique document ID (UUID)")
     customer_id: str = Field(..., description="Customer tenant ID")
     sid: str = Field(..., description="SAP System ID")
-    analysis_from: Optional[datetime] = Field(None, description="Analysis period start date")
-    analysis_to: Optional[datetime] = Field(None, description="Analysis period end date")
+    analysis_from: Optional[date] = Field(None, description="Analysis period start date")
+    analysis_to: Optional[date] = Field(None, description="Analysis period end date")
     title: Optional[str] = Field(None, description="Report title")
     file_name: str = Field(..., description="Original filename")
     pages: int = Field(default=0, description="Number of pages")

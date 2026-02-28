@@ -3,7 +3,7 @@
 import hashlib
 import re
 from typing import Tuple
-from datetime import datetime
+from datetime import datetime, date
 import fitz  # PyMuPDF
 import pymupdf4llm
 
@@ -88,7 +88,7 @@ class PDFExtractor:
             return match.group(1).strip()
         return default
 
-    def _extract_analysis_window(self, first_page_text: str) -> Tuple[datetime | None, datetime | None]:
+    def _extract_analysis_window(self, first_page_text: str) -> Tuple[date | None, date | None]:
         """Extract analysis period start/end dates from page 1 text using `sort=True` layout."""
         text = (first_page_text or "")
         if not text:
@@ -97,8 +97,8 @@ class PDFExtractor:
         start_match = re.search(r"Analysis from\s+(\d{2}\.\d{2}\.\d{4})", text, re.MULTILINE)
         end_match = re.search(r"Until\s+(\d{2}\.\d{2}\.\d{4})", text, re.MULTILINE)
         
-        start = self._parse_date(start_match.group(1)) if start_match else None
-        end = self._parse_date(end_match.group(1)) if end_match else None
+        start = self._parse_date(start_match.group(1)).date() if start_match and self._parse_date(start_match.group(1)) else None
+        end = self._parse_date(end_match.group(1)).date() if end_match and self._parse_date(end_match.group(1)) else None
         
         return start, end
 
