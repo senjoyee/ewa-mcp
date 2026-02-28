@@ -41,6 +41,7 @@ def create_ewa_docs_index(client: SearchIndexClient):
         SimpleField(name="pages", type=SearchFieldDataType.Int32),
         SimpleField(name="sha256", type=SearchFieldDataType.String),
         SimpleField(name="alert_count", type=SearchFieldDataType.Int32),
+        SimpleField(name="processing_status", type=SearchFieldDataType.String, filterable=True),
     ]
     
     index = SearchIndex(name="ewa-docs", fields=fields)
