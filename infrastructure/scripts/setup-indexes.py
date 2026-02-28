@@ -143,7 +143,8 @@ def create_ewa_check_overview_index(client: SearchIndexClient):
         SimpleField(name="page_start", type=SearchFieldDataType.Int32),
         SimpleField(name="page_end", type=SearchFieldDataType.Int32),
         SimpleField(name="page_range", type=SearchFieldDataType.String),
-        SimpleField(name="source_page", type=SearchFieldDataType.Int32)
+        SimpleField(name="source_page", type=SearchFieldDataType.Int32),
+        SimpleField(name="evidence_chunk_ids", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True)
     ]
     
     # Semantic search configuration

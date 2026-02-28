@@ -193,4 +193,5 @@ class SearchIndexer:
             "page_end": check.page_end,
             "page_range": check.page_range,
             "source_page": check.source_page,
+            "evidence_chunk_ids": check.evidence_chunk_ids,
         }
