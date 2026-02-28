@@ -54,7 +54,6 @@ class CheckOverviewRow(BaseModel):
     page_end: int = Field(..., description="Parsed page end from reference_page")
     page_range: str = Field(..., description="Formatted reference page range")
     source_page: Optional[int] = Field(None, description="Page where row was detected")
-    evidence_chunk_ids: List[str] = Field(default_factory=list, description="Linked evidence chunks")
 
 
 # Backward compatibility alias used across current pipeline/tooling imports.

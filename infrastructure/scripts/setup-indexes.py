@@ -141,17 +141,12 @@ def create_ewa_check_overview_index(client: SearchIndexClient):
         SimpleField(name="subtopic_rating_raw", type=SearchFieldDataType.String),
         SimpleField(name="topic_rating_normalized", type=SearchFieldDataType.String, filterable=True, facetable=True),
         SimpleField(name="subtopic_rating_normalized", type=SearchFieldDataType.String, filterable=True, facetable=True),
-        SimpleField(name="priority_bucket", type=SearchFieldDataType.String, filterable=True, facetable=True),
         SimpleField(name="reference_page", type=SearchFieldDataType.String, filterable=True),
         SearchableField(name="reference_section", type=SearchFieldDataType.String, filterable=True),
         SimpleField(name="page_start", type=SearchFieldDataType.Int32),
         SimpleField(name="page_end", type=SearchFieldDataType.Int32),
         SimpleField(name="page_range", type=SearchFieldDataType.String),
-        SimpleField(name="source_page", type=SearchFieldDataType.Int32),
-        SimpleField(name="evidence_chunk_ids", type=SearchFieldDataType.Collection(SearchFieldDataType.String)),
-        SimpleField(name="sap_note_ids", type=SearchFieldDataType.Collection(SearchFieldDataType.String), filterable=True),
-        SearchableField(name="description", type=SearchFieldDataType.String),
-        SearchableField(name="recommendation", type=SearchFieldDataType.String),
+        SimpleField(name="source_page", type=SearchFieldDataType.Int32)
     ]
     
     # Semantic search configuration
@@ -161,13 +156,11 @@ def create_ewa_check_overview_index(client: SearchIndexClient):
             title_field=SemanticField(field_name="topic_name"),
             content_fields=[
                 SemanticField(field_name="topic_name"),
-                SemanticField(field_name="subtopic_name"),
-                SemanticField(field_name="description"),
+                SemanticField(field_name="subtopic_name")
             ],
             keywords_fields=[
                 SemanticField(field_name="sid"),
-                SemanticField(field_name="priority_bucket"),
-                SemanticField(field_name="reference_section"),
+                SemanticField(field_name="reference_section")
             ]
         )
     )

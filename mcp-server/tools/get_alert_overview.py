@@ -89,11 +89,8 @@ async def execute(search_client: "SearchClient", arguments: dict) -> str:
             "row_type": alert.row_type,
             "topic_name": alert.topic_name,
             "subtopic_name": alert.subtopic_name,
-            "priority_bucket": alert.priority_bucket,
             "page_range": alert.page_range,
             "section_path": alert.section_path,
-            "sap_note_ids": alert.sap_note_ids,
-            "description": alert.description,
             "citation": {
                 "doc_id": alert.doc_id,
                 "section_path": alert.section_path,

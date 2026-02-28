@@ -31,7 +31,7 @@ class Category(str, Enum):
 
 
 class Alert(BaseModel):
-    """SAP EarlyWatch Alert model."""
+    """SAP EarlyWatch Alert model/CheckOverviewRow."""
     alert_id: str = Field(..., description="Unique alert identifier")
     customer_id: str = Field(..., description="Customer tenant ID")
     doc_id: str = Field(..., description="Document/report ID")
@@ -45,11 +45,7 @@ class Alert(BaseModel):
     page_start: int = Field(..., description="Starting page")
     page_end: int = Field(..., description="Ending page")
     page_range: str = Field(..., description="Formatted page range")
-    evidence_chunk_ids: List[str] = Field(default_factory=list, description="Linked evidence chunks")
-    sap_note_ids: List[str] = Field(default_factory=list, description="Referenced SAP notes")
     tags: List[str] = Field(default_factory=list)
-    description: Optional[str] = Field(None, description="Alert description")
-    recommendation: Optional[str] = Field(None, description="Recommended action")
 
 
 class AlertExtractionResult(BaseModel):

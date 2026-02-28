@@ -305,17 +305,12 @@ class SearchClient:
             subtopic_rating_raw=d.get("subtopic_rating_raw"),
             topic_rating_normalized=d.get("topic_rating_normalized"),
             subtopic_rating_normalized=d.get("subtopic_rating_normalized"),
-            priority_bucket=d.get("priority_bucket"),
             reference_page=d.get("reference_page"),
             reference_section=d.get("reference_section"),
             page_start=d.get("page_start", 1),
             page_end=d.get("page_end", 1),
             page_range=d.get("page_range", "1"),
-            source_page=d.get("source_page"),
-            evidence_chunk_ids=d.get("evidence_chunk_ids", []),
-            sap_note_ids=d.get("sap_note_ids", []),
-            description=d.get("description"),
-            recommendation=d.get("recommendation"),
+            source_page=d.get("source_page")
         )
     
     def _dict_to_chunk(self, d: Dict) -> Chunk:
