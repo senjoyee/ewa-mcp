@@ -85,7 +85,7 @@ class SearchClient:
         results = client.search(
             search_text="*",
             filter=filter_str,
-            order_by=["report_date desc"],
+            order_by=["analysis_to desc"],
             top=latest_n
         )
         

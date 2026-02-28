@@ -105,7 +105,7 @@ if 'polling_file' in st.session_state:
         results = search_client.search(
             search_text="*",
             filter=f"customer_id eq '{cust_id}'",
-            order_by=["report_date desc"],
+            order_by=["analysis_to desc"],
             top=20
         )
 
@@ -167,8 +167,8 @@ if st.button("Load Documents Database"):
     try:
         results = search_client.search(
             search_text="*",
-            select="doc_id,customer_id,sid,file_name,processing_status,alert_count,report_date",
-            order_by="report_date desc"
+            select="doc_id,customer_id,sid,file_name,processing_status,alert_count,analysis_to",
+            order_by="analysis_to desc"
         )
         
         docs = list(results)
