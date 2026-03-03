@@ -187,6 +187,7 @@ class SearchIndexer:
             "subtopic_rating_raw": check.subtopic_rating_raw,
             "topic_rating_normalized": check.topic_rating_normalized,
             "subtopic_rating_normalized": check.subtopic_rating_normalized,
+            "priority_bucket": getattr(check, "priority_bucket", None),
             "reference_page": check.reference_page,
             "reference_section": check.reference_section,
             "page_start": check.page_start,
