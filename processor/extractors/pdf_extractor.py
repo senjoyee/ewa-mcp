@@ -35,7 +35,6 @@ class PDFExtractor:
         
         # Extract metadata
         pages = len(doc)
-        doc_id = f"{customer_id}_{sha256_hash[:16]}"
         first_page_text = doc[0].get_text("text", sort=True) if pages > 0 else ""
         
         # Extract deterministic cover-page metadata
@@ -45,6 +44,9 @@ class PDFExtractor:
         product = self._extract_field(first_page_text, r"Product\s+(.+)$")
         db_system = self._extract_field(first_page_text, r"DB System\s+(.+)$")
         installation_no = self._extract_field(first_page_text, r"Installation No\.\s+(\d+)")
+        
+        date_str = analysis_to.strftime("%m%d%Y") if analysis_to else "UNKNOWN_DATE"
+        doc_id = f"{customer_id}_{sid}_{date_str}"
         
         # Create document model
         document = Document(
