@@ -277,15 +277,15 @@ class VisionAlertExtractor:
             final_topic_rating_normalized = check_data.get("topic_rating_normalized") or current_topic_rating_normalized
 
             effective_rating = check_data.get("subtopic_rating_normalized") or final_topic_rating_normalized
-            priority_bucket = "unknown"
+            severity = "unknown"
             if effective_rating == "red":
-                priority_bucket = "high"
+                severity = "high"
             elif effective_rating == "yellow":
-                priority_bucket = "medium"
+                severity = "medium"
             elif effective_rating == "green":
-                priority_bucket = "ok"
+                severity = "ok"
             elif effective_rating == "grey":
-                priority_bucket = "info"
+                severity = "info"
 
             check = CheckOverviewRow(
                 check_id=f"{doc_id}_check_{idx:04d}",
@@ -299,7 +299,7 @@ class VisionAlertExtractor:
                 subtopic_rating_raw=check_data.get("subtopic_rating_raw"),
                 topic_rating_normalized=final_topic_rating_normalized,
                 subtopic_rating_normalized=check_data.get("subtopic_rating_normalized"),
-                priority_bucket=priority_bucket,
+                severity=severity,
                 reference_page=check_data.get("reference_page"),
                 reference_section=check_data.get("reference_section"),
                 page_start=page_start,

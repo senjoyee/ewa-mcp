@@ -183,7 +183,7 @@ class SearchIndexer:
             "topic_name": check.topic_name,
             "subtopic_name": check.subtopic_name,
             "subtopic_rating_normalized": check.subtopic_rating_normalized,
-            "priority_bucket": getattr(check, "priority_bucket", None),
+            "severity": getattr(check, "severity", None),
             "page_start": check.page_start,
             "page_end": check.page_end,
             "page_range": check.page_range,

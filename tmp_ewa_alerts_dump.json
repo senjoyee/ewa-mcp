@@ -1,0 +1,634 @@
+[
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_1",
+    "title": "SAP HANA Database: The maintenance end for your HANA Database Support Package Stack is reached.",
+    "severity": "very_high",
+    "category": "lifecycle",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_20",
+    "title": "Software Configuration for ERP - SAP Application Release - Maintenance Phases",
+    "severity": "high",
+    "category": "lifecycle",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_3",
+    "title": "SAP Software on this system is outdated. Support with SAP Security Notes is no longer ensured.",
+    "severity": "very_high",
+    "category": "lifecycle",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_9",
+    "title": "With the SAP kernel of your ABAP system the stability or consistency is at risk.",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "2",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_16",
+    "title": "Standard users have default passwords in other client(s) than 000",
+    "severity": "medium",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_21",
+    "title": "Software Configuration for ERP - Security Risk Due to Outdated Support Packages",
+    "severity": "high",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_22",
+    "title": "Software Configuration for ERP - HANA Database Version for HRP",
+    "severity": "high",
+    "category": "database",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0112",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0110",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0104_sub00"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_24",
+    "title": "SAP System Operating ERP - Table Reorganization",
+    "severity": "medium",
+    "category": "data_volume",
+    "page_range": "3",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_43",
+    "title": "SAP NetWeaver Gateway - Important Periodic Jobs",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_26",
+    "title": "Security - Activation Status and Validity of User SYSTEM",
+    "severity": "high",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_31",
+    "title": "Critical authorizations, which should not be used in production",
+    "severity": "high",
+    "category": "security",
+    "page_range": "4",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_0",
+    "title": "Mainstream/extended maintenance/priority-one support (if offered) for your SAP product version has ended or will end soon.",
+    "severity": "very_high",
+    "category": "lifecycle",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_6",
+    "title": "Users with critical authorizations, which allow to do anything in client 000",
+    "severity": "very_high",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_12",
+    "title": "SAP HANA database: Number of Records reaches recommended limit.",
+    "severity": "high",
+    "category": "data_volume",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_28",
+    "title": "Security - Default Passwords of Standard Users",
+    "severity": "medium",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_29",
+    "title": "Security - RFC Gateway Security",
+    "severity": "high",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_32",
+    "title": "Critical authorizations, which should only see very limited use in production",
+    "severity": "medium",
+    "category": "security",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_40",
+    "title": "SAP NetWeaver Gateway - MetaData Cache Activation",
+    "severity": "medium",
+    "category": "performance",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0046",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0108",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0047",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0049",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0106"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_8",
+    "title": "Users with critical authorizations, which should not be used in production in other client(s) than 000",
+    "severity": "very_high",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_38",
+    "title": "SAP HANA Database HRP - Size and Growth",
+    "severity": "medium",
+    "category": "data_volume",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_39",
+    "title": "SAP HANA Database HRP - Administration",
+    "severity": "medium",
+    "category": "configuration",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0030",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0026",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0034",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0029"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_42",
+    "title": "SAP NetWeaver Gateway - Gateway Error Logs",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_13",
+    "title": "SAP HANA database: Memory consumption of tables exceeds 50% of usable memory.",
+    "severity": "high",
+    "category": "data_volume",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_37",
+    "title": "SAP HANA Database HRP - SAP HANA Workload and Performance",
+    "severity": "medium",
+    "category": "performance",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0046",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0108",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0047",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0049",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0106"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_41",
+    "title": "SAP NetWeaver Gateway - Logging Configuration",
+    "severity": "medium",
+    "category": "configuration",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0030",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0026",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0034",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0029"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_17",
+    "title": "TMSADM exists in another client than 000",
+    "severity": "medium",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_19",
+    "title": "Software Configuration for ERP - Service Preparation of ERP",
+    "severity": "high",
+    "category": "configuration",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0030",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0026",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0034",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0029"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_34",
+    "title": "SAP HANA Database HRP - SAP HANA Stability and Alerts",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_4",
+    "title": "SAP HANA database: User SYSTEM is active and valid.",
+    "severity": "high",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_5",
+    "title": "SAP HANA database: Support Package has run out of security maintenance. Support with SAP Security Notes is no longer ensured.",
+    "severity": "very_high",
+    "category": "lifecycle",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_10",
+    "title": "We found more than 30 ABAP dumps in your system.",
+    "severity": "high",
+    "category": "stability",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_18",
+    "title": "Service Data Quality and Service Readiness - Sending EarlyWatch Alert of ERP to SAP Backbone",
+    "severity": "high",
+    "category": "other",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_25",
+    "title": "Security - Maintenance Status of current SAP HANA Database Revision",
+    "severity": "high",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_35",
+    "title": "SAP HANA Database HRP - SAP HANA Database Configuration",
+    "severity": "medium",
+    "category": "configuration",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0030",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0026",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0034",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0029"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_36",
+    "title": "SAP HANA Database HRP - SAP HANA Resource Consumption",
+    "severity": "medium",
+    "category": "performance",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0046",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0108",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0047",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0049",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0106"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_30",
+    "title": "Security - Critical authorizations, which allow to do anything",
+    "severity": "high",
+    "category": "security",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_14",
+    "title": "SAP HANA database: Consistency checks are scheduled without the global consistency check.",
+    "severity": "high",
+    "category": "stability",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_15",
+    "title": "SAP HANA database: Few SAP HANA dumps occurred on your system.",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "2",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_27",
+    "title": "Security - Age of Support Packages",
+    "severity": "high",
+    "category": "lifecycle",
+    "page_range": "3",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_11",
+    "title": "SAP HANA database: Parameters are not set in accordance with the recommendation.",
+    "severity": "high",
+    "category": "configuration",
+    "page_range": "2",
+    "section_path": "Priority/High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0030",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0090",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0026",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0034",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0029"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_23",
+    "title": "SAP System Operating ERP - Program Errors (ABAP Dumps)",
+    "severity": "medium",
+    "category": "stability",
+    "page_range": "3",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0085",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0086",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0084",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0087",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0088"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_2",
+    "title": "Gateway Access Control List sec_info is not effective. Well-known attacks may endager your system.",
+    "severity": "very_high",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_7",
+    "title": "Users with critical authorizations, which allow to do anything in other client(s) than 000",
+    "severity": "very_high",
+    "category": "security",
+    "page_range": "2",
+    "section_path": "Priority/Very High",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": [
+      "TBS_32cccac4f856d495_20260221194823_chunk_0067",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0061",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0063",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0062",
+      "TBS_32cccac4f856d495_20260221194823_chunk_0059"
+    ]
+  },
+  {
+    "alert_id": "TBS_32cccac4f856d495_20260221194823_33",
+    "title": "Upgrade Planning - Compatibility Package Usage: Information for SAP Solution Manager",
+    "severity": "medium",
+    "category": "lifecycle",
+    "page_range": "4",
+    "section_path": "Priority/Medium",
+    "sap_note_ids": [],
+    "evidence_chunk_ids": []
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "resource_group": "ewa-mcp-rg",
+  "search_endpoint": "https://ewa-search.search.windows.net",
+  "openai_endpoint": "https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/",
+  "eventgrid_endpoint": "https://ewa-events.uksouth-1.eventgrid.azure.net/api/events",
+  "mcp_server_url": null,
+  "api_key": "<set your API key>"
+}

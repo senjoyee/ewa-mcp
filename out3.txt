@@ -1,0 +1,65 @@
+INFO:httpx:HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/responses "HTTP/1.1 200 OK"
+INFO:processor.extractors.alert_extractor:Vision extraction produced 61 check overview rows
+Running vision extractor...
+Success. Extracted 61 checks.
+Service Data Quality and Service Readiness - None
+unknown - Sending EarlyWatch Alert of ERP to SAP Backbone
+unknown - Configuring ERP for SAP Note Assistant
+unknown - Service Preparation of ERP
+Software Configuration for ERP - None
+unknown - SAP Application Release - Maintenance Phases
+unknown - Security Risk Due to Outdated Support Packages
+unknown - Database - Maintenance Phases
+unknown - Operating System(s) - Maintenance Phases
+unknown - SAP Kernel Release
+unknown - HANA Database Version for HRP
+Hardware Capacity - None
+Workload Distribution ERP - None
+unknown - Workload by Application Module
+unknown - DB Load Profile
+Performance Overview ERP - None
+SAP System Operating ERP - None
+unknown - Availability based on Collector Protocols
+unknown - Program Errors (ABAP Dumps)
+unknown - Update Errors
+unknown - Table Reorganization
+unknown - Critical Number Ranges
+Security - None
+unknown - System Recommendations (HANA)
+unknown - Maintenance Status of current SAP HANA Database Revision
+unknown - SAP HANA System Privilege DATA ADMIN
+unknown - SAP HANA Password Policy
+unknown - SAP HANA Audit Trail
+unknown - SAP HANA SQL Trace Level
+unknown - SAP HANA Network Settings for Internal Services
+unknown - SAP HANA Network Settings for System Replication Communication (listeninterface)
+unknown - Activation Status and Validity of User SYSTEM
+unknown - System Recommendations (ABAP)
+unknown - Age of Support Packages
+unknown - Default Passwords of Standard Users
+unknown - Control of the Automatic Login User SAP*
+unknown - Protection of Passwords in Database Connections
+unknown - ABAP Password Policy
+unknown - RFC Gateway Security
+unknown - Message Server Security
+unknown - Critical authorizations, which allow to do anything
+unknown - Critical authorizations, which should not be used in production
+unknown - Critical authorizations, which should only see very limited use in production
+Software Change and Transport Management of ERP - None
+unknown - Number of Changes
+unknown - Emergency Changes
+unknown - Failed Changes
+Upgrade Planning - None
+unknown - Compatibility Package Usage: Information for SAP Solution Manager
+SAP HANA Database HRP - None
+unknown - SAP HANA Stability and Alerts
+unknown - SAP HANA Database Configuration
+unknown - SAP HANA Resource Consumption
+unknown - SAP HANA Workload and Performance
+unknown - Size and Growth
+unknown - Administration
+SAP NetWeaver Gateway - None
+unknown - MetaData Cache Activation
+unknown - Logging Configuration
+unknown - Gateway Error Logs
+unknown - Important Periodic Jobs

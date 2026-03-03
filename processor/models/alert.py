@@ -46,7 +46,7 @@ class CheckOverviewRow(BaseModel):
     subtopic_rating_raw: Optional[str] = Field(None, description="Raw symbol/text from subtopic rating column")
     topic_rating_normalized: Optional[str] = Field(None, description="red|yellow|green|grey|unknown")
     subtopic_rating_normalized: Optional[str] = Field(None, description="red|yellow|green|grey|unknown")
-    priority_bucket: Optional[str] = Field(None, description="high|medium|ok|unknown|info")
+    severity: Optional[str] = Field(None, description="high|medium|ok|unknown|info")
     reference_page: Optional[str] = Field(None, description="Reference page to detailed section")
     reference_section: Optional[str] = Field(None, description="Reference section number/path")
     page_start: int = Field(..., description="Parsed page start from reference_page")

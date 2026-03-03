@@ -1,0 +1,503 @@
+﻿"timestamp [UTC]",message,severityLevel,itemType,customDimensions,"operation_Name","operation_Id","operation_ParentId","client_Type","client_IP","client_City","client_StateOrProvince","client_CountryOrRegion","cloud_RoleName","cloud_RoleInstance",appId,appName,iKey,sdkVersion,itemId
+"2/27/2026, 11:25:51.942 PM","Call to StopAsync complete, registered listeners are now stopped",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Call to StopAsync complete, registered listeners are now stopped"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Host.DrainModeManager""}",,aae47721fe900d7477f778c01761d998,7cbf370bbd433ddc,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","b91fbbbe-1433-11f1-88e1-7c1e521d860f"
+"2/27/2026, 11:25:51.942 PM","Stopped the listener 'Microsoft.Azure.WebJobs.Extensions.Storage.Common.Listeners.QueueListener' for function 'process_ewa_queue'",1,trace,"{""prop__functionName"":""process_ewa_queue"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Stopped the listener '{listenerName}' for function '{functionName}'"",""LogLevel"":""Information"",""Category"":""Host.Startup"",""prop__listenerName"":""Microsoft.Azure.WebJobs.Extensions.Storage.Common.Listeners.QueueListener""}",,aae47721fe900d7477f778c01761d998,7cbf370bbd433ddc,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","b91fbbbd-1433-11f1-88e1-7c1e521d860f"
+"2/27/2026, 11:25:51.939 PM","Stopping the listener 'Microsoft.Azure.WebJobs.Extensions.Storage.Common.Listeners.QueueListener' for function 'process_ewa_queue'",1,trace,"{""prop__functionName"":""process_ewa_queue"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Stopping the listener '{listenerName}' for function '{functionName}'"",""LogLevel"":""Information"",""Category"":""Host.Startup"",""prop__listenerName"":""Microsoft.Azure.WebJobs.Extensions.Storage.Common.Listeners.QueueListener""}",,aae47721fe900d7477f778c01761d998,7cbf370bbd433ddc,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","b91fbbbc-1433-11f1-88e1-7c1e521d860f"
+"2/27/2026, 11:25:51.939 PM","Calling StopAsync on the registered listeners",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Calling StopAsync on the registered listeners"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Host.DrainModeManager""}",,aae47721fe900d7477f778c01761d998,7cbf370bbd433ddc,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","b91fbbbb-1433-11f1-88e1-7c1e521d860f"
+"2/27/2026, 11:25:51.939 PM","DrainMode mode enabled",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""DrainMode mode enabled"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Host.DrainModeManager""}",,aae47721fe900d7477f778c01761d998,7cbf370bbd433ddc,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","b91fbbb9-1433-11f1-88e1-7c1e521d860f"
+"2/27/2026, 11:22:14.118 PM","Executed 'Functions.process_ewa_queue' (Failed, Id=a868d8bf-ac83-452f-8192-b766099c87e2, Duration=191204ms)",3,trace,"{""prop__invocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""prop__functionName"":""Functions.process_ewa_queue"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Executed '{functionName}' ({status}, Id={invocationId}, Duration={executionDuration}ms)"",""LogLevel"":""Error"",""EventId"":""3"",""Category"":""Function.process_ewa_queue"",""EventName"":""FunctionCompleted"",""prop__status"":""Failed"",""prop__executionDuration"":""191204""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8957b-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.111 PM","Failed to process queue message: 'CheckOverviewRow' object has no attribute 'priority_bucket'",3,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Error"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89579-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.110 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': 'c9e719f7-a8ab-4b6a-b225-1a9c049851a7'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:13 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89577-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.106 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '447'
+    'x-ms-client-request-id': '2624f4d6-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89574-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.103 PM","Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '2619167a-1433-11f1-b88f-f25b94d8194b'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:13 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89572-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.027 PM","Request URL: 'https://ewa-search.search.windows.net/indexes('ewa-docs')/docs/search.index?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '105'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '2619167a-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89570-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.027 PM","Error processing ERP_EWA_02.2026.pdf: 'CheckOverviewRow' object has no attribute 'priority_bucket'",3,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Error"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8956f-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:14.024 PM","Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': '2589aaa8-1433-11f1-b88f-f25b94d8194b'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:13 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8956d-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:13.089 PM","Request URL: 'https://ewa-search.search.windows.net/indexes('ewa-chunks')/docs/search.index?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '7648204'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': '2589aaa8-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89569-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:13.083 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': '77e15c14-cfb0-46af-9eb4-f210174f7afc'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:12 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89567-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:12.909 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '390'
+    'x-ms-client-request-id': '256e88c2-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89566-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:12.908 PM","Step 6: Indexing to Azure AI Search...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89564-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.827 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89562-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.700 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8955f-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.573 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8955d-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.450 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8955b-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.327 PM","Step 5: Linking check overview rows to evidence chunks (semantic similarity)...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89559-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.325 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89557-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:10.218 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89555-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:09.993 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89553-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:09.691 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89551-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:09.323 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8954e-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:09.010 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8954c-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:08.651 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8954a-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:08.066 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f89546-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:07.878 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","33f8953e-1433-11f1-88e1-000d3a0b622a"
+"2/27/2026, 11:22:07.696 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf6-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:07.542 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf5-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:07.339 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf4-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:07.135 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf2-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.892 PM","HTTP Request: POST https://ai-joyeesen-5297.services.ai.azure.com/openai/v1/embeddings ""HTTP/1.1 200 OK""",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf1-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.551 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': '77e5ea9b-a42b-435a-8814-448f5d97ee75'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:05 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acf0-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.542 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '391'
+    'x-ms-client-request-id': '21a2f44e-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acef-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.542 PM","Step 4: Generating embeddings...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acee-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.542 PM","Created 210 chunks",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5aced-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.521 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': 'c6755ef5-4295-4ef6-9f69-5fbfaba086fb'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:22:05 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acec-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.482 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '390'
+    'x-ms-client-request-id': '21997072-1433-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5aceb-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.482 PM","Step 3: Chunking markdown...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5acea-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:22:06.481 PM","Extracted 61 check overview rows",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5ace9-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:21:37.790 PM","Host lock lease acquired by instance ID '000000000000000000000000286FF42E'.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Host lock lease acquired by instance ID '{websiteInstanceId}'."",""LogLevel"":""Information"",""EventId"":""337"",""Category"":""Host.General"",""EventName"":""PrimaryHostCoordinatorLockLeaseAcquired"",""prop__websiteInstanceId"":""000000000000000000000000286FF42E""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","21c5ace8-1433-11f1-88e1-7c1e522e27ea"
+"2/27/2026, 11:19:55.502 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': '82c6574a-01b9-4128-be71-9411cf732a0a'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:19:54 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c3970d-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.494 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '398'
+    'x-ms-client-request-id': 'd386888e-1432-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c3970b-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.492 PM","Step 2: Extracting check overview rows with Vision AI...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c39708-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.488 PM","Response status: 200
+Response headers:
+    'Transfer-Encoding': 'chunked'
+    'Content-Type': 'application/json; odata.metadata=none; odata.streaming=true; charset=utf-8'
+    'Content-Encoding': 'REDACTED'
+    'Vary': 'REDACTED'
+    'Strict-Transport-Security': 'REDACTED'
+    'Preference-Applied': 'REDACTED'
+    'OData-Version': 'REDACTED'
+    'request-id': 'd37ac7b0-1432-11f1-b88f-f25b94d8194b'
+    'elapsed-time': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:19:55 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c39705-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.417 PM","Request URL: 'https://ewa-search.search.windows.net/indexes('ewa-docs')/docs/search.index?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json'
+    'Content-Length': '420'
+    'api-key': 'REDACTED'
+    'Accept': 'application/json;odata.metadata=none'
+    'x-ms-client-request-id': 'd37ac7b0-1432-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-search-documents/11.6.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c39702-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.416 PM","Response status: 200
+Response headers:
+    'Content-Length': '0'
+    'Server': 'Microsoft-HTTPAPI/2.0'
+    'Strict-Transport-Security': 'REDACTED'
+    'x-ms-request-id': '5b49e9c7-c0bb-4e2a-880e-21c1a4937d87'
+    'api-supported-versions': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:19:54 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c396fe-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:55.391 PM","Request URL: 'https://ewa-events.uksouth-1.eventgrid.azure.net/api/events?api-version=REDACTED'
+Request method: 'POST'
+Request headers:
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '394'
+    'x-ms-client-request-id': 'd376e6d6-1432-11f1-b88f-f25b94d8194b'
+    'User-Agent': 'azsdk-python-eventgrid/4.10.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'aeg-sas-key': 'REDACTED'
+A body is sent with the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","e4c396f5-1432-11f1-88e1-000d3a0b60f5"
+"2/27/2026, 11:19:03.125 PM","Step 1: Extracting PDF content from ERP_EWA_02.2026.pdf...",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc9d-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:03.057 PM","Downloaded 5128887 bytes for TBS/ERP_EWA_02.2026.pdf",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc9b-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:03.033 PM","Response status: 206
+Response headers:
+    'Content-Length': '5128887'
+    'Content-Type': 'application/octet-stream'
+    'Content-Range': 'REDACTED'
+    'Last-Modified': 'Fri, 27 Feb 2026 23:18:58 GMT'
+    'Accept-Ranges': 'REDACTED'
+    'ETag': '""0x8DE765695D163C5""'
+    'Server': 'Windows-Azure-Blob/1.0 Microsoft-HTTPAPI/2.0'
+    'x-ms-request-id': 'cdc55b52-801e-0034-3b3f-a889b5000000'
+    'x-ms-client-request-id': 'b43139f2-1432-11f1-b88f-f25b94d8194b'
+    'x-ms-version': 'REDACTED'
+    'x-ms-creation-time': 'REDACTED'
+    'x-ms-blob-content-md5': 'REDACTED'
+    'x-ms-lease-status': 'REDACTED'
+    'x-ms-lease-state': 'REDACTED'
+    'x-ms-blob-type': 'REDACTED'
+    'x-ms-server-encrypted': 'REDACTED'
+    'Date': 'Fri, 27 Feb 2026 23:19:02 GMT'",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc9a-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.925 PM","Request URL: 'https://ewastgw2gtkdzdemu7s.blob.core.windows.net/ewa-uploads/TBS/ERP_EWA_02.2026.pdf'
+Request method: 'GET'
+Request headers:
+    'x-ms-range': 'REDACTED'
+    'x-ms-version': 'REDACTED'
+    'Accept': 'application/xml'
+    'User-Agent': 'azsdk-python-storage-blob/12.28.0 Python/3.11.13 (Linux-5.15.186.1-1.cm2-x86_64-with-glibc2.31)'
+    'x-ms-date': 'REDACTED'
+    'x-ms-client-request-id': 'b43139f2-1432-11f1-b88f-f25b94d8194b'
+    'Authorization': 'REDACTED'
+No body was attached to the request",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue.User""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc99-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.915 PM","Trigger Details: MessageId: f0f979eb-ed06-4c91-bd98-ebab3455c01a, DequeueCount: 1, InsertedOn: 2026-02-27T23:19:02.000+00:00",1,trace,"{""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Trigger Details: MessageId: {MessageId}, DequeueCount: {DequeueCount}, InsertedOn: {InsertedOn}"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_queue"",""prop__MessageId"":""f0f979eb-ed06-4c91-bd98-ebab3455c01a"",""prop__DequeueCount"":""1"",""prop__InsertedOn"":""2026-02-27T23:19:02.0000000Z""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc97-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.914 PM","Executing 'Functions.process_ewa_queue' (Reason='New queue message detected on 'ewa-blob-queue'.', Id=a868d8bf-ac83-452f-8192-b766099c87e2)",1,trace,"{""prop__invocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""InvocationId"":""a868d8bf-ac83-452f-8192-b766099c87e2"",""prop__functionName"":""Functions.process_ewa_queue"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Executing '{functionName}' (Reason='{reason}', Id={invocationId})"",""LogLevel"":""Information"",""EventId"":""1"",""prop__reason"":""New queue message detected on 'ewa-blob-queue'."",""Category"":""Function.process_ewa_queue"",""EventName"":""FunctionStarted""}","process_ewa_queue",8c18cb75ba222e75b13ef2dd5d692474,1817b2a94b5a13e7,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc96-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.887 PM","Executed 'Functions.process_ewa_blob' (Succeeded, Id=de165e78-7aa9-4bfa-8936-2096e18dfa0f, Duration=64ms)",1,trace,"{""prop__invocationId"":""de165e78-7aa9-4bfa-8936-2096e18dfa0f"",""InvocationId"":""de165e78-7aa9-4bfa-8936-2096e18dfa0f"",""prop__functionName"":""Functions.process_ewa_blob"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Executed '{functionName}' ({status}, Id={invocationId}, Duration={executionDuration}ms)"",""LogLevel"":""Information"",""EventId"":""2"",""Category"":""Function.process_ewa_blob"",""EventName"":""FunctionCompleted"",""prop__status"":""Succeeded"",""prop__executionDuration"":""64"",""prop__MS_AzureFunctionsRequestID"":""12fcb8f5-ccd1-464a-8d41-98b9e9bb95e6""}","process_ewa_blob",3f1c7181e397d535f6d7328d65f70fce,179ac149908ba0f8,PC,"0.0.0.0",London,"Greater London","United Kingdom","ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc95-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.831 PM","BlobCreated event received for: https://ewastgw2gtkdzdemu7s.blob.core.windows.net/ewa-uploads/TBS/ERP_EWA_02.2026.pdf",1,trace,"{""InvocationId"":""de165e78-7aa9-4bfa-8936-2096e18dfa0f"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""LogLevel"":""Information"",""Category"":""Function.process_ewa_blob.User"",""prop__MS_AzureFunctionsRequestID"":""12fcb8f5-ccd1-464a-8d41-98b9e9bb95e6""}","process_ewa_blob",3f1c7181e397d535f6d7328d65f70fce,179ac149908ba0f8,PC,"0.0.0.0",London,"Greater London","United Kingdom","ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc94-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.831 PM","Consider using the pymupdf_layout package for a greatly improved page layout analysis.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Consider using the pymupdf_layout package for a greatly improved page layout analysis."",""LogLevel"":""Information"",""Category"":""Host.Function.Console""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc93-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.824 PM","Executing 'Functions.process_ewa_blob' (Reason='This function was programmatically called via the host APIs.', Id=de165e78-7aa9-4bfa-8936-2096e18dfa0f)",1,trace,"{""prop__invocationId"":""de165e78-7aa9-4bfa-8936-2096e18dfa0f"",""InvocationId"":""de165e78-7aa9-4bfa-8936-2096e18dfa0f"",""prop__functionName"":""Functions.process_ewa_blob"",""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Executing '{functionName}' (Reason='{reason}', Id={invocationId})"",""LogLevel"":""Information"",""EventId"":""1"",""prop__reason"":""This function was programmatically called via the host APIs."",""Category"":""Function.process_ewa_blob"",""EventName"":""FunctionStarted"",""prop__MS_AzureFunctionsRequestID"":""12fcb8f5-ccd1-464a-8d41-98b9e9bb95e6""}","process_ewa_blob",3f1c7181e397d535f6d7328d65f70fce,179ac149908ba0f8,PC,"0.0.0.0",London,"Greater London","United Kingdom","ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc92-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.812 PM","Job host started",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Job host started"",""LogLevel"":""Information"",""Category"":""Host.Startup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc91-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.812 PM","Host started (43ms)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Host started ({ms}ms)"",""LogLevel"":""Information"",""EventId"":""413"",""Category"":""Host.Startup"",""EventName"":""ScriptHostStarted"",""prop__ms"":""43""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc90-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.810 PM","HttpOptions
+{
+  ""DynamicThrottlesEnabled"": false,
+  ""EnableChunkedRequestBinding"": false,
+  ""MaxConcurrentRequests"": 100,
+  ""MaxOutstandingRequests"": 200,
+  ""RoutePrefix"": ""api""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""HttpOptions\n{\n  \""DynamicThrottlesEnabled\"": false,\n  \""EnableChunkedRequestBinding\"": false,\n  \""MaxConcurrentRequests\"": 100,\n  \""MaxOutstandingRequests\"": 200,\n  \""RoutePrefix\"": \""api\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8f-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.809 PM","Host initialized (41ms)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Host initialized ({ms}ms)"",""LogLevel"":""Information"",""EventId"":""412"",""Category"":""Host.Startup"",""EventName"":""ScriptHostInitialized"",""prop__ms"":""41""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8e-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.809 PM","Initializing function HTTP routes
+Mapped function route 'api/process_ewa_blob' [POST] to 'process_ewa_blob'",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Initializing function HTTP routes\nMapped function route 'api/process_ewa_blob' [POST] to 'process_ewa_blob'"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Script.WebHost.WebScriptHostHttpRoutesManager""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8d-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.806 PM","Found the following functions:
+Host.Functions.process_ewa_blob
+Host.Functions.process_ewa_queue",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Found the following functions:\nHost.Functions.process_ewa_blob\nHost.Functions.process_ewa_queue"",""LogLevel"":""Information"",""Category"":""Host.Startup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8c-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.774 PM","Worker process started and initialized.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Worker process started and initialized."",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Script.Workers.Rpc.RpcFunctionInvocationDispatcher""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8b-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.774 PM","Generating 2 job function(s)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Generating 2 job function(s)"",""LogLevel"":""Information"",""Category"":""Host.Startup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc8a-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.769 PM","2 functions loaded",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""{count} functions loaded"",""LogLevel"":""Information"",""EventId"":""315"",""Category"":""Host.Startup"",""EventName"":""FunctionMetadataManagerFunctionsLoaded"",""prop__count"":""2""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc89-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.769 PM","0 functions found (Custom)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""{count} functions found ({provider})"",""LogLevel"":""Information"",""EventId"":""327"",""Category"":""Host.Startup"",""EventName"":""FunctionsReturnedByProvider"",""prop__provider"":""Custom"",""prop__count"":""0""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc88-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","Reading functions metadata (Custom)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Reading functions metadata ({provider})"",""LogLevel"":""Information"",""EventId"":""326"",""Category"":""Host.Startup"",""EventName"":""ReadingFunctionMetadataFromProvider"",""prop__provider"":""Custom""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc87-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","Loading functions metadata",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Loading functions metadata"",""LogLevel"":""Information"",""EventId"":""314"",""Category"":""Host.Startup"",""EventName"":""FunctionMetadataManagerLoadingFunctionsMetadata""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc86-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","Starting Host (HostId=ewa-processor-prod, InstanceId=64e43400-bc51-4963-9ffe-c257969f7865, Version=4.1044.300.1, ProcessId=34, AppDomainId=1, InDebugMode=True, InDiagnosticMode=False, FunctionsExtensionVersion=~4)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Starting Host (HostId={hostId}, InstanceId={instanceId}, Version={version}, ProcessId={processId}, AppDomainId={appDomainId}, InDebugMode={inDebugMode}, InDiagnosticMode={inDiagnosticMode}, FunctionsExtensionVersion={extensionVersion})"",""LogLevel"":""Information"",""EventId"":""401"",""Category"":""Host.Startup"",""EventName"":""StartingHost"",""prop__hostId"":""ewa-processor-prod"",""prop__extensionVersion"":""~4"",""prop__inDiagnosticMode"":""False"",""prop__inDebugMode"":""True"",""prop__appDomainId"":""1"",""prop__processId"":""34"",""prop__instanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__version"":""4.1044.300.1""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc85-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","Starting JobHost",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Starting JobHost"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.JobHostService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc84-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","ScaleOptions
+{
+  ""ScaleMetricsMaxAge"": ""00:02:00"",
+  ""ScaleMetricsSampleInterval"": ""00:00:10"",
+  ""MetricsPurgeEnabled"": true,
+  ""IsTargetScalingEnabled"": true,
+  ""IsRuntimeScalingEnabled"": false
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""ScaleOptions\n{\n  \""ScaleMetricsMaxAge\"": \""00:02:00\"",\n  \""ScaleMetricsSampleInterval\"": \""00:00:10\"",\n  \""MetricsPurgeEnabled\"": true,\n  \""IsTargetScalingEnabled\"": true,\n  \""IsRuntimeScalingEnabled\"": false\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc83-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","SingletonOptions
+{
+  ""LockPeriod"": ""00:00:15"",
+  ""ListenerLockPeriod"": ""00:01:00"",
+  ""LockAcquisitionTimeout"": ""10675199.02:48:05.4775807"",
+  ""LockAcquisitionPollingInterval"": ""00:00:05"",
+  ""ListenerLockRecoveryPollingInterval"": ""00:01:00""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""SingletonOptions\n{\n  \""LockPeriod\"": \""00:00:15\"",\n  \""ListenerLockPeriod\"": \""00:01:00\"",\n  \""LockAcquisitionTimeout\"": \""10675199.02:48:05.4775807\"",\n  \""LockAcquisitionPollingInterval\"": \""00:00:05\"",\n  \""ListenerLockRecoveryPollingInterval\"": \""00:01:00\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc82-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","QueuesOptions
+{
+  ""BatchSize"": 16,
+  ""NewBatchThreshold"": 8,
+  ""MaxPollingInterval"": ""00:01:00"",
+  ""MaxDequeueCount"": 5,
+  ""VisibilityTimeout"": ""00:00:00"",
+  ""MessageEncoding"": ""Base64""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""QueuesOptions\n{\n  \""BatchSize\"": 16,\n  \""NewBatchThreshold\"": 8,\n  \""MaxPollingInterval\"": \""00:01:00\"",\n  \""MaxDequeueCount\"": 5,\n  \""VisibilityTimeout\"": \""00:00:00\"",\n  \""MessageEncoding\"": \""Base64\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc81-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","ConcurrencyOptions
+{
+  ""DynamicConcurrencyEnabled"": false,
+  ""MaximumFunctionConcurrency"": 500,
+  ""CPUThreshold"": 0.8,
+  ""SnapshotPersistenceEnabled"": true
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""ConcurrencyOptions\n{\n  \""DynamicConcurrencyEnabled\"": false,\n  \""MaximumFunctionConcurrency\"": 500,\n  \""CPUThreshold\"": 0.8,\n  \""SnapshotPersistenceEnabled\"": true\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc80-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","FunctionResultAggregatorOptions
+{
+  ""BatchSize"": 1000,
+  ""FlushTimeout"": ""00:00:30"",
+  ""IsEnabled"": true
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""FunctionResultAggregatorOptions\n{\n  \""BatchSize\"": 1000,\n  \""FlushTimeout\"": \""00:00:30\"",\n  \""IsEnabled\"": true\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7f-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","HttpWorkerOptions
+{
+  ""Type"": 0,
+  ""Description"": null,
+  ""Arguments"": null,
+  ""Port"": 0,
+  ""EnableForwardingHttpRequest"": false,
+  ""EnableProxyingHttpRequest"": false,
+  ""InitializationTimeout"": ""00:00:30"",
+  ""CustomRoutesEnabled"": false,
+  ""Http"": null
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""HttpWorkerOptions\n{\n  \""Type\"": 0,\n  \""Description\"": null,\n  \""Arguments\"": null,\n  \""Port\"": 0,\n  \""EnableForwardingHttpRequest\"": false,\n  \""EnableProxyingHttpRequest\"": false,\n  \""InitializationTimeout\"": \""00:00:30\"",\n  \""CustomRoutesEnabled\"": false,\n  \""Http\"": null\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7e-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","LoggerFilterOptions
+{
+  ""MinLevel"": ""None"",
+  ""Rules"": [
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": ""Warning"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""None"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""None"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""Trace"",
+      ""Filter"": null
+    }
+  ]
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""LoggerFilterOptions\n{\n  \""MinLevel\"": \""None\"",\n  \""Rules\"": [\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""Warning\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""None\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""None\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""Trace\"",\n      \""Filter\"": null\n    }\n  ]\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7d-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","LoggerFilterOptions
+{
+  ""MinLevel"": ""None"",
+  ""Rules"": [
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": ""Warning"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""None"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": null,
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""None"",
+      ""Filter"": null
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": null,
+      ""Filter"": ""<AddFilter>b__0""
+    },
+    {
+      ""ProviderName"": ""Microsoft.Azure.WebJobs.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider"",
+      ""CategoryName"": null,
+      ""LogLevel"": ""Trace"",
+      ""Filter"": null
+    }
+  ]
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""LoggerFilterOptions\n{\n  \""MinLevel\"": \""None\"",\n  \""Rules\"": [\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""Warning\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""None\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.WebHostSystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": null,\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""None\"",\n      \""Filter\"": null\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.SystemLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": null,\n      \""Filter\"": \""<AddFilter>b__0\""\n    },\n    {\n      \""ProviderName\"": \""Microsoft.Azure.WebJobs.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider\"",\n      \""CategoryName\"": null,\n      \""LogLevel\"": \""Trace\"",\n      \""Filter\"": null\n    }\n  ]\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7c-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.768 PM","ApplicationInsightsLoggerOptions
+{
+  ""SamplingSettings"": {
+    ""EvaluationInterval"": ""00:00:15"",
+    ""InitialSamplingPercentage"": 100.0,
+    ""MaxSamplingPercentage"": 100.0,
+    ""MaxTelemetryItemsPerSecond"": 20.0,
+    ""MinSamplingPercentage"": 0.1,
+    ""MovingAverageRatio"": 0.25,
+    ""SamplingPercentageDecreaseTimeout"": ""00:02:00"",
+    ""SamplingPercentageIncreaseTimeout"": ""00:15:00""
+  },
+  ""SamplingExcludedTypes"": ""Request"",
+  ""SamplingIncludedTypes"": null,
+  ""SnapshotConfiguration"": null,
+  ""EnablePerformanceCountersCollection"": true,
+  ""HttpAutoCollectionOptions"": {
+    ""EnableHttpTriggerExtendedInfoCollection"": true,
+    ""EnableW3CDistributedTracing"": true,
+    ""EnableResponseHeaderInjection"": true
+  },
+  ""LiveMetricsInitializationDelay"": ""00:00:15"",
+  ""EnableLiveMetrics"": true,
+  ""EnableLiveMetricsFilters"": false,
+  ""EnableQueryStringTracing"": false,
+  ""EnableDependencyTracking"": true,
+  ""DependencyTrackingOptions"": null,
+  ""TokenCredentialOptions"": null,
+  ""DiagnosticsEventListenerLogLevel"": null,
+  ""EnableAutocollectedMetricsExtractor"": false,
+  ""EnableMetricsCustomDimensionOptimization"": false,
+  ""EnableAdaptiveSamplingDelay"": true,
+  ""AdaptiveSamplingInitializationDelay"": ""00:00:15""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""ApplicationInsightsLoggerOptions\n{\n  \""SamplingSettings\"": {\n    \""EvaluationInterval\"": \""00:00:15\"",\n    \""InitialSamplingPercentage\"": 100.0,\n    \""MaxSamplingPercentage\"": 100.0,\n    \""MaxTelemetryItemsPerSecond\"": 20.0,\n    \""MinSamplingPercentage\"": 0.1,\n    \""MovingAverageRatio\"": 0.25,\n    \""SamplingPercentageDecreaseTimeout\"": \""00:02:00\"",\n    \""SamplingPercentageIncreaseTimeout\"": \""00:15:00\""\n  },\n  \""SamplingExcludedTypes\"": \""Request\"",\n  \""SamplingIncludedTypes\"": null,\n  \""SnapshotConfiguration\"": null,\n  \""EnablePerformanceCountersCollection\"": true,\n  \""HttpAutoCollectionOptions\"": {\n    \""EnableHttpTriggerExtendedInfoCollection\"": true,\n    \""EnableW3CDistributedTracing\"": true,\n    \""EnableResponseHeaderInjection\"": true\n  },\n  \""LiveMetricsInitializationDelay\"": \""00:00:15\"",\n  \""EnableLiveMetrics\"": true,\n  \""EnableLiveMetricsFilters\"": false,\n  \""EnableQueryStringTracing\"": false,\n  \""EnableDependencyTracking\"": true,\n  \""DependencyTrackingOptions\"": null,\n  \""TokenCredentialOptions\"": null,\n  \""DiagnosticsEventListenerLogLevel\"": null,\n  \""EnableAutocollectedMetricsExtractor\"": false,\n  \""EnableMetricsCustomDimensionOptimization\"": false,\n  \""EnableAdaptiveSamplingDelay\"": true,\n  \""AdaptiveSamplingInitializationDelay\"": \""00:00:15\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7b-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.766 PM","Host initialization: ConsecutiveErrors=0, StartupCount=3, OperationId=a24434b4-da03-4eda-8b5a-277e19e8f724",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Host initialization: ConsecutiveErrors={attemptCount}, StartupCount={startCount}, OperationId={operationId}"",""LogLevel"":""Information"",""EventId"":""504"",""Category"":""Host.Startup"",""EventName"":""Initialization"",""prop__operationId"":""a24434b4-da03-4eda-8b5a-277e19e8f724"",""prop__startCount"":""3"",""prop__attemptCount"":""0""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc7a-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.766 PM","Initializing Host. OperationId: 'a24434b4-da03-4eda-8b5a-277e19e8f724'.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Initializing Host. OperationId: '{operationId}'."",""LogLevel"":""Information"",""EventId"":""503"",""Category"":""Host.Startup"",""EventName"":""Initializing"",""prop__operationId"":""a24434b4-da03-4eda-8b5a-277e19e8f724""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc79-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.761 PM","Initializing Warmup Extension.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""Initializing Warmup Extension."",""LogLevel"":""Information"",""Category"":""Host.Triggers.Warmup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc78-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:19:02.757 PM","The Dashboard setting is no longer supported. See https://aka.ms/functions-dashboard for details.",2,trace,"{""ProcessId"":""34"",""HostInstanceId"":""64e43400-bc51-4963-9ffe-c257969f7865"",""prop__{OriginalFormat}"":""The Dashboard setting is no longer supported. See https://aka.ms/functions-dashboard for details."",""LogLevel"":""Warning"",""Category"":""Microsoft.Azure.WebJobs.Script.WebHost.Diagnostics.FunctionInstanceLogger""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--5118137f-24ed-46ee-a7b1-2ebeaf868c12","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","c598cc75-1432-11f1-88e1-000d3a0b6538"
+"2/27/2026, 11:16:55.017 PM","Host lock lease acquired by instance ID '0000000000000000000000001B487CAE'.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Host lock lease acquired by instance ID '{websiteInstanceId}'."",""LogLevel"":""Information"",""EventId"":""337"",""Category"":""Host.General"",""EventName"":""PrimaryHostCoordinatorLockLeaseAcquired"",""prop__websiteInstanceId"":""0000000000000000000000001B487CAE""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7b6-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.058 PM","ConcurrencyOptions
+{
+  ""DynamicConcurrencyEnabled"": false,
+  ""MaximumFunctionConcurrency"": 500,
+  ""CPUThreshold"": 0.8,
+  ""SnapshotPersistenceEnabled"": true
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""ConcurrencyOptions\n{\n  \""DynamicConcurrencyEnabled\"": false,\n  \""MaximumFunctionConcurrency\"": 500,\n  \""CPUThreshold\"": 0.8,\n  \""SnapshotPersistenceEnabled\"": true\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7b5-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.058 PM","QueuesOptions
+{
+  ""BatchSize"": 16,
+  ""NewBatchThreshold"": 8,
+  ""MaxPollingInterval"": ""00:01:00"",
+  ""MaxDequeueCount"": 5,
+  ""VisibilityTimeout"": ""00:00:00"",
+  ""MessageEncoding"": ""Base64""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""QueuesOptions\n{\n  \""BatchSize\"": 16,\n  \""NewBatchThreshold\"": 8,\n  \""MaxPollingInterval\"": \""00:01:00\"",\n  \""MaxDequeueCount\"": 5,\n  \""VisibilityTimeout\"": \""00:00:00\"",\n  \""MessageEncoding\"": \""Base64\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7b2-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.057 PM","HttpOptions
+{
+  ""DynamicThrottlesEnabled"": false,
+  ""EnableChunkedRequestBinding"": false,
+  ""MaxConcurrentRequests"": 100,
+  ""MaxOutstandingRequests"": 200,
+  ""RoutePrefix"": ""api""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""HttpOptions\n{\n  \""DynamicThrottlesEnabled\"": false,\n  \""EnableChunkedRequestBinding\"": false,\n  \""MaxConcurrentRequests\"": 100,\n  \""MaxOutstandingRequests\"": 200,\n  \""RoutePrefix\"": \""api\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7b1-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.037 PM","Job host started",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Job host started"",""LogLevel"":""Information"",""Category"":""Host.Startup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7af-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.037 PM","Host started (43ms)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Host started ({ms}ms)"",""LogLevel"":""Information"",""EventId"":""413"",""Category"":""Host.Startup"",""EventName"":""ScriptHostStarted"",""prop__ms"":""43""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7ad-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.035 PM","HttpOptions
+{
+  ""DynamicThrottlesEnabled"": false,
+  ""EnableChunkedRequestBinding"": false,
+  ""MaxConcurrentRequests"": 100,
+  ""MaxOutstandingRequests"": 200,
+  ""RoutePrefix"": ""api""
+}",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""HttpOptions\n{\n  \""DynamicThrottlesEnabled\"": false,\n  \""EnableChunkedRequestBinding\"": false,\n  \""MaxConcurrentRequests\"": 100,\n  \""MaxOutstandingRequests\"": 200,\n  \""RoutePrefix\"": \""api\""\n}"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Hosting.OptionsLoggingService""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7ab-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.035 PM","Host initialized (40ms)",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Host initialized ({ms}ms)"",""LogLevel"":""Information"",""EventId"":""412"",""Category"":""Host.Startup"",""EventName"":""ScriptHostInitialized"",""prop__ms"":""40""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7a8-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.035 PM","Initializing function HTTP routes
+Mapped function route 'api/process_ewa_blob' [POST] to 'process_ewa_blob'",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Initializing function HTTP routes\nMapped function route 'api/process_ewa_blob' [POST] to 'process_ewa_blob'"",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Script.WebHost.WebScriptHostHttpRoutesManager""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7a7-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.032 PM","Found the following functions:
+Host.Functions.process_ewa_blob
+Host.Functions.process_ewa_queue",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Found the following functions:\nHost.Functions.process_ewa_blob\nHost.Functions.process_ewa_queue"",""LogLevel"":""Information"",""Category"":""Host.Startup""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7a5-1432-11f1-88e1-000d3a0b6541"
+"2/27/2026, 11:16:50.001 PM","Worker process started and initialized.",1,trace,"{""ProcessId"":""34"",""HostInstanceId"":""2ce5b2de-bc2d-4686-b6e0-7bb45094c025"",""prop__{OriginalFormat}"":""Worker process started and initialized."",""LogLevel"":""Information"",""Category"":""Microsoft.Azure.WebJobs.Script.Workers.Rpc.RpcFunctionInvocationDispatcher""}",,,,PC,"0.0.0.0",,,,"ewa-processor-prod","0--7634a230-d2dc-4de3-903c-2b5a5608acb8","0f322f54-c7f6-40d0-94df-bca8103cc8ee","/subscriptions/2969c0b7-f92f-49b7-b7e6-d3135583ad6e/resourcegroups/ewa-mcp-rg/providers/microsoft.insights/components/ewa-processor-prod","8446d0cd-98d0-4523-aff2-3d821fdba881","azurefunctions: 4.1044.300.1","7666d7a4-1432-11f1-88e1-000d3a0b6541"

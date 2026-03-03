@@ -2,7 +2,7 @@
 
 import os
 from typing import List, Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, date
 
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient as AzureSearchClient
@@ -56,8 +56,6 @@ class SearchClient:
             filters.append(f"analysis_to le {kwargs['date_to']}T00:00:00Z")
         if kwargs.get("severity"):
             filters.append(f"severity eq '{kwargs['severity']}'")
-        if kwargs.get("priority_bucket"):
-            filters.append(f"priority_bucket eq '{kwargs['priority_bucket']}'")
         if kwargs.get("category"):
             filters.append(f"category eq '{kwargs['category']}'")
         if kwargs.get("section_path"):
@@ -100,7 +98,7 @@ class SearchClient:
         self,
         customer_id: str,
         doc_id: str,
-        priority_bucket: Optional[str] = None,
+        severity: Optional[str] = None,
         row_type: Optional[str] = None,
     ) -> List[CheckOverviewRow]:
         """Get check overview rows for a document."""
@@ -109,7 +107,7 @@ class SearchClient:
         filter_str = self._build_filter(
             customer_id,
             doc_id=doc_id,
-            priority_bucket=priority_bucket,
+            severity=severity,
         )
         if row_type:
             filter_str = f"{filter_str} and row_type eq '{row_type}'"
@@ -135,7 +133,7 @@ class SearchClient:
     ) -> List[CheckOverviewRow]:
         """Backward-compatible alias for older tool code paths."""
         _ = category
-        return await self.get_checks(customer_id, doc_id, priority_bucket=severity)
+        return await self.get_checks(customer_id, doc_id, severity=severity)
     
     async def get_check(self, customer_id: str, doc_id: str, check_id: str) -> Optional[CheckOverviewRow]:
         """Get single check row by ID."""

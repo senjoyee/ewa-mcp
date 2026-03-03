@@ -134,7 +134,7 @@ def create_ewa_check_overview_index(client: SearchIndexClient):
         SearchableField(name="topic_name", type=SearchFieldDataType.String),
         SearchableField(name="subtopic_name", type=SearchFieldDataType.String),
         SimpleField(name="subtopic_rating_normalized", type=SearchFieldDataType.String, filterable=True, facetable=True),
-        SimpleField(name="priority_bucket", type=SearchFieldDataType.String, filterable=True, facetable=True),
+        SimpleField(name="severity", type=SearchFieldDataType.String, filterable=True, facetable=True),
         SimpleField(name="page_start", type=SearchFieldDataType.Int32),
         SimpleField(name="page_end", type=SearchFieldDataType.Int32),
         SimpleField(name="page_range", type=SearchFieldDataType.String),
