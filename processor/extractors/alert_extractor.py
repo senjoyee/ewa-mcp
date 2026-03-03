@@ -247,20 +247,46 @@ class VisionAlertExtractor:
         
         # Convert to CheckOverviewRow models
         checks = []
+        current_topic_name = "unknown"
+        current_topic_rating_raw = None
+        current_topic_rating_normalized = None
+
         for idx, check_data in enumerate(result_json.get("checks", [])):
             ref_page = check_data.get("reference_page") or "1"
             page_start, page_end = _parse_page_bounds(ref_page, default_page=1)
+
+            row_type = check_data.get("row_type", "subtopic")
+            extracted_topic = check_data.get("topic_name")
+
+            # Update topic context if it's a new topic or explicitly stated
+            is_valid_topic = extracted_topic and extracted_topic.strip() and extracted_topic.lower() != "unknown"
+            if row_type == "topic" and is_valid_topic:
+                current_topic_name = extracted_topic
+                current_topic_rating_raw = check_data.get("topic_rating_raw")
+                current_topic_rating_normalized = check_data.get("topic_rating_normalized")
+            elif is_valid_topic:
+                current_topic_name = extracted_topic
+                if check_data.get("topic_rating_raw"):
+                    current_topic_rating_raw = check_data.get("topic_rating_raw")
+                if check_data.get("topic_rating_normalized"):
+                    current_topic_rating_normalized = check_data.get("topic_rating_normalized")
+
+            # Forward fill values for subtopics
+            final_topic_name = current_topic_name
+            final_topic_rating_raw = check_data.get("topic_rating_raw") or current_topic_rating_raw
+            final_topic_rating_normalized = check_data.get("topic_rating_normalized") or current_topic_rating_normalized
+
             check = CheckOverviewRow(
                 check_id=f"{doc_id}_check_{idx:04d}",
                 customer_id=customer_id,
                 doc_id=doc_id,
                 sid=sid,
-                row_type=check_data.get("row_type", "subtopic"),
-                topic_name=check_data.get("topic_name") or "unknown",
+                row_type=row_type,
+                topic_name=final_topic_name,
                 subtopic_name=check_data.get("subtopic_name"),
-                topic_rating_raw=check_data.get("topic_rating_raw"),
+                topic_rating_raw=final_topic_rating_raw,
                 subtopic_rating_raw=check_data.get("subtopic_rating_raw"),
-                topic_rating_normalized=check_data.get("topic_rating_normalized"),
+                topic_rating_normalized=final_topic_rating_normalized,
                 subtopic_rating_normalized=check_data.get("subtopic_rating_normalized"),
                 reference_page=check_data.get("reference_page"),
                 reference_section=check_data.get("reference_section"),
