@@ -215,6 +215,11 @@ def _run_pipeline(customer_id: str, file_name: str, blob_url: str) -> None:
             )
             alert_result = future.result(timeout=600)
             checks = alert_result.checks
+            
+            # Map extraction-time missing dates from Document metadata
+            for check in checks:
+                check.report_date = getattr(document, "analysis_to", None)
+            
             logging.info("Extracted %d check overview rows", len(checks))
         except FuturesTimeoutError:
             logging.error("Alert extraction timed out after 600s; continuing without check-overview rows")
