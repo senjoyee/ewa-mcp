@@ -152,8 +152,7 @@ def create_ewa_check_overview_index(client: SearchIndexClient):
                 SemanticField(field_name="subtopic_name")
             ],
             keywords_fields=[
-                SemanticField(field_name="sid"),
-                SemanticField(field_name="reference_section")
+                SemanticField(field_name="sid")
             ]
         )
     )
