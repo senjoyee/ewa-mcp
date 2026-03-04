@@ -44,6 +44,8 @@ class SearchClient:
     
     def _build_filter(self, customer_id: str, **kwargs) -> str:
         """Build OData filter with customer_id and optional filters."""
+        # Normalize to uppercase — customer_id is stored in upper case in the index
+        customer_id = customer_id.upper()
         filters = [f"customer_id eq '{customer_id}'"]
         
         if kwargs.get("sid"):
@@ -138,7 +140,7 @@ class SearchClient:
     async def get_check(self, customer_id: str, doc_id: str, check_id: str) -> Optional[CheckOverviewRow]:
         """Get single check row by ID."""
         client = self._get_client(self.check_overview_index)
-        
+        customer_id = customer_id.upper()
         filter_str = f"customer_id eq '{customer_id}' and doc_id eq '{doc_id}' and check_id eq '{check_id}'"
         
         results = client.search(
